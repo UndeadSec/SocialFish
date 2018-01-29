@@ -14,7 +14,7 @@ Github: <a href="https://github.com/A1S0N">@A1S0N</a>
 
 ### PREREQUISITES
 
-* python 3.x 
+* python 2.7 
 
 ## TESTED ON
 [![Kali)](https://www.google.com/s2/favicons?domain=https://www.kali.org/)](https://www.kali.org) **Kali Linux - ROLLING EDITION**
