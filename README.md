@@ -14,7 +14,9 @@ Github: <a href="https://github.com/A1S0N">@A1S0N</a>
 
 ### PREREQUISITES
 
-* python 2.7 
+* Python 2.7 
+* Wget from Python
+* PHP
 
 ## TESTED ON
 [![Kali)](https://www.google.com/s2/favicons?domain=https://www.kali.org/)](https://www.kali.org) **Kali Linux - ROLLING EDITION**
@@ -25,12 +27,17 @@ git clone https://github.com/UndeadSec/SocialFish.git
 ```
 
 ### RUNNING
+
 ```
 cd SocialFish
 ```
 
 ```
-python3 SocialFish.py
+sudo pip install -r requirements.txt
+```
+
+```
+python SocialFish.py
 ```
 
 ## DISCLAIMER
