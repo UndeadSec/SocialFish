@@ -95,6 +95,6 @@ Bitcoin Address: 1EmJ5KiAKzpyqGGHopAq9qukrVPS47T9bA
 
 ### VIDEO DEMO
 <p align="center">
-<a href="https://youtu.be/#">
+<a href="https://youtu.be/mj6nnD5zzaE">
   <img src="https://raw.githubusercontent.com/UndeadSec/SocialFish/master/video.png" />
 </a></p>
