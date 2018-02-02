@@ -19,7 +19,11 @@ Github: <a href="https://github.com/A1S0N">@A1S0N</a>
 * PHP
 
 ## TESTED ON
-[![Kali)](https://www.google.com/s2/favicons?domain=https://www.kali.org/)](https://www.kali.org) **Kali Linux - ROLLING EDITION**
+* **Kali Linux - Rolling Edition**
+
+* **Linux Mint - 18.3 Sylvia**
+
+* **Ubuntu - 16.04.3 LTS**
 
 ### CLONE
 ```
