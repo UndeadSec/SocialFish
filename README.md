@@ -17,6 +17,7 @@ Github: <a href="https://github.com/A1S0N">@A1S0N</a>
 * Python 2.7 
 * Wget from Python
 * PHP
+* sudo
 
 ### TESTED ON
 * **Kali Linux - Rolling Edition**
