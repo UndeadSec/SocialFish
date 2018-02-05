@@ -135,7 +135,7 @@ def runPEnv():
     else:
 	print " --{0}>{1} PHP NOT FOUND: \n {0}*{1} Please install PHP and run me again. http://www.php.net/".format(RED, END)
         exit(0)
-    if raw_input(" {0}[{1}!{0}]{1} Do you will use this tool just for educational purposes? (y/n)\n {2}SF > {1}".format(RED, END, CYAN)).upper() == 'N':
+    if raw_input(" {0}[{1}!{0}]{1} Do you will use this tool only for educational purposes? (y/n)\n {2}SF > {1}".format(RED, END, CYAN)).upper() == 'N':
         system('clear')
         print '\n[ {0}YOU ARE NOT AUTHORIZED TO USE THIS TOOL{1} ]\n'.format(RED, END)
         exit(0)
