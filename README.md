@@ -66,6 +66,9 @@ python SocialFish.py
 **+ Wordpress:**
 - Similar Wordpress login page.
 
+**+ Twitter:**
+- Traditional Twitter login page.
+
 **PULL REQUESTS ARE WELCOME**
 
 ### SCREENSHOT
