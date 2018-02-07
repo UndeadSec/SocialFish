@@ -14,8 +14,7 @@ Github: <a href="https://github.com/A1S0N">@A1S0N</a>
 
 ##### OTHER CONTRIBUTORS
 
-###### - **cloaksec** [ Add Twitter <a href="https://github.com/UndeadSec/SocialFish/pull/10">#10</a> ] | Twitter: <a href="https://twitter.com/cloaksec">@cloaksec</a> Github: <a href="https://github.com/cloaksec">@cloaksec</a>
-
+###### - **cloaksec** [ Add Twitter <a href="https://github.com/UndeadSec/SocialFish/pull/10">#10</a> ] 
 
 ### PREREQUISITES
 
