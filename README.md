@@ -12,11 +12,9 @@
 Twitter: <a href="https://twitter.com/A1S0N_">@A1S0N_</a>
 Github: <a href="https://github.com/A1S0N">@A1S0N</a>
 
-#### OTHER CONTRIBUTORS
+##### OTHER CONTRIBUTORS
 
-* **cloaksecs** [ Add Twitter <a href="https://github.com/UndeadSec/SocialFish/pull/10">#10</a> ] | 
-Twitter: <a href="https://twitter.com/cloaksec">@cloaksec</a>
-Github: <a href="https://github.com/cloaksec">@cloaksec</a>
+###### - **cloaksec** [ Add Twitter <a href="https://github.com/UndeadSec/SocialFish/pull/10">#10</a> ] | Twitter: <a href="https://twitter.com/cloaksec">@cloaksec</a> Github: <a href="https://github.com/cloaksec">@cloaksec</a>
 
 
 ### PREREQUISITES
