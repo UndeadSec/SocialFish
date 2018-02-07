@@ -54,8 +54,8 @@ python SocialFish.py
 - Traditional Google login page.
 - Advanced login with Facebook.
 
-**+ LinkedIN:**
-- Traditional LinkedIN login page.
+**+ LinkedIn:**
+- Traditional LinkedIn login page.
 
 **+ Github:**
 - Traditional Github login page.
@@ -66,6 +66,9 @@ python SocialFish.py
 **+ Wordpress:**
 - Similar Wordpress login page.
 
+**+ Twitter:**
+- Traditional Twitter login page.
+
 **PULL REQUESTS ARE WELCOME**
 
 ### SCREENSHOT
@@ -73,10 +76,10 @@ python SocialFish.py
 
 ## DISCLAIMER
 <p align="center">
-  JUST USE TO EDUCATIONAL PURPOSES
+  TO BE USED FOR EDUCATIONAL PURPOSES ONLY
 </p>
 
-The use of the SocialFish is COMPLETE RESPONSIBILITY of the END-USER. Developer assume NO liability and are NOT responsible for any misuse or damage caused by this program.
+The use of the SocialFish is COMPLETE RESPONSIBILITY of the END-USER. Developers assume NO liability and are NOT responsible for any misuse or damage caused by this program.
 
 "DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
 FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL

