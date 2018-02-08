@@ -31,6 +31,8 @@ Github: <a href="https://github.com/A1S0N">@A1S0N</a>
 
 * **Ubuntu - 16.04.3 LTS**
 
+* **MacOS High Sierra**
+
 ### CLONE
 ```
 git clone https://github.com/UndeadSec/SocialFish.git
