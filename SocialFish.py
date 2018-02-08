@@ -8,7 +8,7 @@ from sys import stdout, exit
 from os import system, path
 import multiprocessing
 from urllib import urlopen
-from platform import architecture
+from platform import system as systemos, architecture
 from wget import download
 
 RED, WHITE, CYAN, GREEN, END = '\033[91m', '\33[46m', '\033[36m', '\033[1;32m', '\033[0m'
@@ -32,11 +32,15 @@ if connected() == False:
 def checkNgrok():
     if path.isfile('Server/ngrok') == False: 
         print '[*] Downloading Ngrok...'
+        
+        ostype = systemos().lower()
+
         if architecture()[0] == '64bit':
-            filename = 'ngrok-stable-darwin-amd64.zip'
+            filename = 'ngrok-stable-{0}-amd64.zip'.format(ostype)
         else:
-            filename = 'ngrok-stable-darwin-386.zip'
+            filename = 'ngrok-stable-{0}-386.zip'.format(ostype)
         url = 'https://bin.equinox.io/c/4VmDzA7iaHb/' + filename
+        print '[*] Downloading ' + filename
         download(url)
         system('unzip ' + filename)
         system('mv ngrok Server/ngrok')
