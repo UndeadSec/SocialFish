@@ -32,15 +32,12 @@ if connected() == False:
 def checkNgrok():
     if path.isfile('Server/ngrok') == False: 
         print '[*] Downloading Ngrok...'
-        
         ostype = systemos().lower()
-
         if architecture()[0] == '64bit':
             filename = 'ngrok-stable-{0}-amd64.zip'.format(ostype)
         else:
             filename = 'ngrok-stable-{0}-386.zip'.format(ostype)
         url = 'https://bin.equinox.io/c/4VmDzA7iaHb/' + filename
-        print '[*] Downloading ' + filename
         download(url)
         system('unzip ' + filename)
         system('mv ngrok Server/ngrok')
