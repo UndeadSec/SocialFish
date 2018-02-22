@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/UndeadSec/SocialFish/master/social.png">  
+  <img src="https://raw.githubusercontent.com/UndeadSec/SocialFish/master/Images/social.png">  
 </p>
 
 <h1 align="center">SocialFish v1.0</h1>
@@ -79,7 +79,7 @@ python SocialFish.py
 **PULL REQUESTS ARE WELCOME**
 
 ### SCREENSHOT
-![Shot](https://github.com/UndeadSec/SocialFish/blob/master/sc.png)
+![Shot](https://github.com/UndeadSec/SocialFish/blob/master/Images/sc.png)
 
 ## DISCLAIMER
 <p align="center">
@@ -104,12 +104,12 @@ Taken from [LICENSE](LICENSE).
 ## Donation
 If you liked our work and want to support us, you can donate :D
 
-<img src="https://raw.githubusercontent.com/UndeadSec/SocialFish/master/donation.png"></img>
+<img src="https://raw.githubusercontent.com/UndeadSec/SocialFish/master/Images/donation.png"></img>
 
 Bitcoin Address: 1EmJ5KiAKzpyqGGHopAq9qukrVPS47T9bA
 
 ### VIDEO DEMO
 <p align="center">
 <a href="https://youtu.be/mj6nnD5zzaE">
-  <img src="https://raw.githubusercontent.com/UndeadSec/SocialFish/master/video.png" />
+  <img src="https://raw.githubusercontent.com/UndeadSec/SocialFish/master/Images/video.png" />
 </a></p>
