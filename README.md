@@ -7,6 +7,10 @@
   Ultimate phishing tool with Ngrok integrated.
 </p>
 
+**[ ! ] ONLY DOWNLOAD IT HERE, DO NOT TRUST IN OTHER PLACES.**
+
+This is the official and only repository of the Social Fish project.
+
 ### MAINTAINERS
 * **Alisson Moretto** | 
 Twitter: <a href="https://twitter.com/A1S0N_">@A1S0N_</a>
