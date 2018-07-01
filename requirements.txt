@@ -1,1 +1,2 @@
-wget==3.2
+huepy
+wget
