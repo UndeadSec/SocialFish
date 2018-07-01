@@ -1,6 +1,6 @@
 ######################################################
 #                                                    #
-#       SOCIALFISH v2.0                              #
+#       SOCIALFISH v2.0sharkNet                      #
 #                                                    #
 # by:     UNDEADSEC                                  #
 #                                                    #
@@ -41,7 +41,7 @@ def checkNgrok():
         system('unzip ' + filename)
         system('mv ngrok base/Server/ngrok')
         system('rm -Rf ' + filename)
-        clear()
+        system('clear')
 
 def checkPHP():
     if 256 != system('which php'):
