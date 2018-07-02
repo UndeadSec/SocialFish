@@ -24,6 +24,7 @@ Github: <a href="https://github.com/A1S0N">@A1S0N</a>
 ### PREREQUISITES
 
 * Python 3.x 
+* pip3
 * wget from Python 3.x
 * huepy from Python 3.x
 * PHP
@@ -47,6 +48,10 @@ git clone https://github.com/UndeadSec/SocialFish.git
 
 ```
 cd SocialFish
+```
+
+```
+sudo apt-get install python3-pip -y
 ```
 
 ```
