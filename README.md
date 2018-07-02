@@ -72,8 +72,8 @@ python3 SocialFish.py
 **+ LinkedIn:**
 - Traditional LinkedIn login page.
 
-**+ Github:**
-- Traditional Github login page.
+**+ GitHub:**
+- Traditional GitHub login page.
 
 **+ Stackoverflow:**
 - Traditional Stackoverflow login page.
