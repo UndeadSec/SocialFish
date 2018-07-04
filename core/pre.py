@@ -15,12 +15,6 @@ from os import system, path
 from platform import system as systemos, architecture
 from urllib.request import urlopen
 
-def checkPython():
-    if version_info<(3,0,0):
-        return False
-    else:
-        return True
-
 def connected(host='http://duckduckgo.com'):
     try:
         urlopen(host)
