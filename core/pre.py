@@ -14,6 +14,7 @@ from wget import download
 from os import system, path
 from platform import system as systemos, architecture
 from urllib.request import urlopen
+from core.view import *
 
 def connected(host='http://duckduckgo.com'):
     try:
@@ -43,4 +44,9 @@ def checkPHP():
     else:
         return False
  
-
+def pre():
+    if connected() == False:
+        conNot()
+        checkNgrok()
+    if checkPHP() == False:
+        phpNot()     

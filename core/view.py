@@ -12,6 +12,7 @@
 
 from os import system
 from huepy import *
+from sys import exit
 
 def clear():
     system('clear')
@@ -28,6 +29,7 @@ def conNot():
 
 def phpNot():
     print(red("\n\n[!] PHP installation not found. Please install PHP and run me again. http://www.php.net/ "))
+    exit(0)
 
 def pyNot():
     print(red("\n\n[!] Please use Python 3. $ python3 SocialFish.py "))
