@@ -45,8 +45,8 @@ def checkPHP():
         return False
  
 def pre():
+    checkNgrok()
     if connected() == False:
-        conNot()
-        checkNgrok()
+        conNot()       
     if checkPHP() == False:
         phpNot()     
