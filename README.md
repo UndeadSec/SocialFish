@@ -51,7 +51,7 @@ cd SocialFish
 ```
 
 ```
-sudo apt-get install python3-pip -y
+sudo apt-get install python3-pip php -y
 ```
 
 ```
@@ -61,6 +61,20 @@ sudo pip3 install -r requirements.txt
 ```
 python3 SocialFish.py
 ```
+
+### USING DOCKER
+
+Create image using docker
+```
+sudo docker build -t "socialfish" .
+```
+
+Using image
+```
+sudo docker run -it --rm "socialfish"
+```
+
+
 ## AVAILABLE PAGES
 
 **+ Facebook:**
