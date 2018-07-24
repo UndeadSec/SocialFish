@@ -86,7 +86,7 @@ def loadModule(module):
  [*] %s module loaded. Building site...'''  % module))
 
 def checkEd():
-    print(red(" [!] Do you agree to use this tool for educational purposes only? (y/n) "))
+    print(red(" [!] Do you agree to use this tool for educational purposes only? (y/N) "))
     if input(cyan('\n SF > ')).upper() != 'Y':
         clear()
         print(red('\n[ YOU ARE NOT AUTHORIZED TO USE THIS TOOL ]\n'))
