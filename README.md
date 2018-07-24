@@ -20,6 +20,7 @@ Github: <a href="https://github.com/A1S0N">@A1S0N</a>
 
 ###### - **cloaksec** [ Add Twitter <a href="https://github.com/UndeadSec/SocialFish/pull/10">#10</a> ] 
 ###### - **adiranas** [ Added macOS support <a href="https://github.com/UndeadSec/SocialFish/pull/12">#12</a> ]
+###### - **greenmind-sec** [ Using Docker  <a href="https://github.com/UndeadSec/SocialFish/pull/46">#46</a> ]
 
 ### PREREQUISITES
 
