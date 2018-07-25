@@ -30,6 +30,8 @@ Github: <a href="https://github.com/A1S0N">@A1S0N</a>
 * huepy from Python 3.x
 * PHP
 * sudo
+* curl
+* git
 
 ### TESTED ON
 * **Kali Linux - Rolling Edition**
@@ -39,6 +41,8 @@ Github: <a href="https://github.com/A1S0N">@A1S0N</a>
 * **Ubuntu - 16.04.3 LTS**
 
 * **MacOS High Sierra**
+
+* **Android Termux**
 
 ### CLONE
 ```
@@ -62,6 +66,27 @@ sudo pip3 install -r requirements.txt
 ```
 python3 SocialFish.py
 ```
+### USING TERMUX
+
+```
+pkg install python php curl git
+```
+
+```
+git clone https://github.com/UndeadSec/SocialFish.git
+```
+
+```
+cd SocialFish
+```
+
+```
+pip install -r requirements.txt
+```
+
+```
+python SocialFish.py
+```
 
 ### USING DOCKER
 
@@ -74,7 +99,6 @@ Using image
 ```
 sudo docker run -it --rm "socialfish"
 ```
-
 
 ## AVAILABLE PAGES
 
