@@ -13,6 +13,7 @@
 from wget import download
 from os import system, path
 from platform import system as systemos, architecture
+from subprocess import check_output
 from urllib.request import urlopen
 from core.view import *
 
@@ -26,11 +27,14 @@ def connected(host='http://duckduckgo.com'):
 def checkNgrok():
     if path.isfile('base/Server/ngrok') == False: 
         print('[*] Downloading Ngrok...')
-        ostype = systemos().lower()
-        if architecture()[0] == '64bit':
-            filename = 'ngrok-stable-{0}-amd64.zip'.format(ostype)
+        if 'Android' in str(check_output(('uname', '-a'))):
+            filename = 'ngrok-stable-linux-arm.zip'
         else:
-            filename = 'ngrok-stable-{0}-386.zip'.format(ostype)
+            ostype = systemos().lower()
+            if architecture()[0] == '64bit':
+                filename = 'ngrok-stable-{0}-amd64.zip'.format(ostype)
+            else:
+                filename = 'ngrok-stable-{0}-386.zip'.format(ostype)
         url = 'https://bin.equinox.io/c/4VmDzA7iaHb/' + filename
         download(url)
         system('unzip ' + filename)
