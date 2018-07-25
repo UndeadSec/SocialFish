@@ -46,6 +46,7 @@ def main():
 
 if __name__ == "__main__":
     try:
+        system('pkill -f ngrok')
         pre()
         main()
         runNgrok()
