@@ -38,7 +38,7 @@ def waitCreds():
 
 def runNgrok():
     system('./base/Server/ngrok http 1449 > /dev/null &')
-    sleep(10)
+    sleep(15)
     check = 'curl -s -N http://127.0.0.1:4040/status | grep "https://[0-9a-z]*\.ngrok.io" -oh'
     ngrok_url = getoutput(check)
     print(green('\n [*] Ngrok URL: %s' % ngrok_url))
