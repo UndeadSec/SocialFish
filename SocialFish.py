@@ -46,15 +46,15 @@ def main():
 
 if __name__ == "__main__":
     try:        
-        system('sudo pkill -f ngrok')
-        system('sudo pkill -f php')
+        system('pkill -f ngrok')
+        system('pkill -f php')
         pre()
         main()
         runNgrok()
         Process(target=runServer).start()
         waitCreds()
     except KeyboardInterrupt:
-        system('sudo pkill -f ngrok')
-        system('sudo pkill -f php')
+        system('pkill -f ngrok')
+        system('pkill -f php')
         end()
         exit(0)
