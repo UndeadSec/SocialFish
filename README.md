@@ -1,8 +1,6 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/UndeadSec/SocialFish/master/Images/social.png">
 </p>
-
-<h1 align="center">SocialFish v2.0sharkNet</h1>
 <p align="center">
   Ultimate phishing tool.
 </p>
@@ -18,9 +16,9 @@ Github: <a href="https://github.com/A1S0N">@A1S0N</a>
 
 ##### OTHER CONTRIBUTORS
 
-###### - **cloaksec** [ Add Twitter <a href="https://github.com/UndeadSec/SocialFish/pull/10">#10</a> ] 
-###### - **adiranas** [ Added macOS support <a href="https://github.com/UndeadSec/SocialFish/pull/12">#12</a> ]
-###### - **greenmind-sec** [ Using Docker  <a href="https://github.com/UndeadSec/SocialFish/pull/46">#46</a> ]
+##### - **cloaksec** [ Add Twitter <a href="https://github.com/UndeadSec/SocialFish/pull/10">#10</a> ] 
+##### - **adiranas** [ Added macOS support <a href="https://github.com/UndeadSec/SocialFish/pull/12">#12</a> ]
+##### - **greenmind-sec** [ Using Docker  <a href="https://github.com/UndeadSec/SocialFish/pull/46">#46</a> ]
 
 ### PREREQUISITES
 
@@ -29,20 +27,8 @@ Github: <a href="https://github.com/A1S0N">@A1S0N</a>
 * wget from Python 3.x
 * huepy from Python 3.x
 * PHP
-* sudo
 * curl
 * git
-
-### TESTED ON
-* **Kali Linux - Rolling Edition**
-
-* **Linux Mint - 18.3 Sylvia**
-
-* **Ubuntu - 16.04.3 LTS**
-
-* **MacOS High Sierra**
-
-* **Android Termux**
 
 ### CLONE
 ```
@@ -102,38 +88,19 @@ sudo docker run -it --rm "socialfish"
 
 ## AVAILABLE PAGES
 
-**+ Facebook:**
-- Traditional Facebook login page.
-
-**+ Google:**
-- Traditional Google login page.
-
-**+ LinkedIn:**
-- Traditional LinkedIn login page.
-
-**+ GitHub:**
-- Traditional GitHub login page.
-
-**+ Stackoverflow:**
-- Traditional Stackoverflow login page.
-
-**+ Wordpress:**
-- Similar Wordpress login page.
-
-**+ Twitter:**
-- Traditional Twitter login page.
-
-**+ Instagram:**
-- Traditional Instagram login page.
-
-**+ Snapchat:**
-- Traditional Snapchat login page.
-
-**+ VK:**
-- Traditional VK login page.
-
-**+ Steam:**
-- Traditional Steam login page.
+|Available Pages|Traditional|Similar|
+|:---|:---:|:---:|
+|Facebook|1|0|
+|Google|1|0|
+|LinkedIn|1|0|
+|GitHub|1|0|
+|StackOverflow|1|0||
+|Wordpress|0|1|
+|Twitter|1|0|
+|Instagram|1|0|
+|Snapchat|1|0|
+|VK|1|0|
+|Steam|1|0|
 
 **PULL REQUESTS ARE WELCOME**
 
@@ -188,8 +155,4 @@ If you liked our work and want to support us, you can donate :D
 
 Bitcoin Address: 1EmJ5KiAKzpyqGGHopAq9qukrVPS47T9bA
 
-### VIDEO DEMO
-<p align="center">
-<a href="https://youtu.be/FMYdnzjEBiQ">
-  <img src="https://raw.githubusercontent.com/UndeadSec/SocialFish/master/Images/video.png" />
-</a></p>
+**VIDEO DEMO:** https://youtu.be/FMYdnzjEBiQ
