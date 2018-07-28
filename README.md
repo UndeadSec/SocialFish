@@ -52,7 +52,7 @@ sudo pip3 install -r requirements.txt
 ```
 python3 SocialFish.py
 ```
-### USING TERMUX
+### USING ANDROID/TERMUX
 
 ```
 pkg install python php curl git
