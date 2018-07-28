@@ -124,7 +124,7 @@ sudo docker run -it --rm "socialfish"
 - Traditional Twitter login page.
 
 **+ Instagram:**
-- Traditional Twitter login page.
+- Traditional Instagram login page.
 
 **+ Snapchat:**
 - Traditional Snapchat login page.
