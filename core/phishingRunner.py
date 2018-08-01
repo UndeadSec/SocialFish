@@ -48,3 +48,23 @@ def runNgrok():
 
 def runServer():
     system("cd base/Server/www/ && php -n -S 127.0.0.1:1449 > /dev/null 2>&1 &")
+
+from contextlib import contextmanager
+import json
+import requests
+import subprocess
+import os
+from time import sleep
+
+@contextmanager
+def ngrok_start():
+    ngrok_process = subprocess.Popen(['ngrok','http','1449'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    while True:
+        try:
+            ngrok_url = requests.get('http://127.0.0.1:4040/api/tunnels/command_line')
+            if ngrok_url.status_code == 200:
+                yield json.loads(ngrok_url.text)['public_url']
+                break
+        except requests.exceptions.ConnectionError:
+            sleep(.5)
+    os.kill(ngrok_process.pid, 15)
