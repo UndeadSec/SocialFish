@@ -48,3 +48,17 @@ def runNgrok():
 
 def runServer():
     system("cd base/Server/www/ && php -n -S 127.0.0.1:1449 > /dev/null 2>&1 &")
+
+def get_url():
+    system('./base/Server/ngrok http 1449 > /dev/null &')
+    import requests
+    import re
+    import json
+    s = requests.Session()
+    s.mount('http://127.0.0.1:4040/status', requests.adapters.HTTPAdapter(max_retries=10))
+    ngrok_req = s.get('http://127.0.0.1:4040/status')
+    #ngrok_req = requests.get('http://127.0.0.1:4040/status')
+    ngrok_re = re.findall(r'window.common = JSON.parse\((.+)\);', ngrok_req.text)
+    #ngrok_dict = json.loads(json.loads(ngrok_re[0]))
+    ngrok_dict = json.loads(ngrok_re[0].replace('\\','').strip('"'))
+    return ngrok_dict['Session']['Tunnels']['command_line']['URL']

