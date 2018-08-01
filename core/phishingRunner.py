@@ -68,3 +68,4 @@ def ngrok_start():
         except requests.exceptions.ConnectionError:
             sleep(.5)
     os.kill(ngrok_process.pid, 15)
+
