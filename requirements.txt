@@ -1,2 +1,9 @@
-huepy
-wget
+setuptools == 40.0.0
+
+# core/email.py: 1
+# core/phishingRunner.py: 15
+# core/view.py: 14
+huepy == 0.9.8.1
+
+# core/pre.py: 13
+wget == 3.2

