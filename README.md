@@ -13,8 +13,7 @@ This is the official and only repository of the SocialFish project.
 
 - cloaksec [ Added Twitter #10][pull-cloaksec]
 - adiranas [ Added macOS support #12 ][pull-adiranas]
-- greenmind-sec [ Using Docker #46 ][pull-greenmind-sec]
-
+- greenmind-sec [ Using Docker #46 ][pull-grenmind-sec]
 
 ### PREREQUISITES
 
@@ -143,7 +142,8 @@ Taken from [LICENSE](LICENSE).
   
   { Better interface and design. }
 
-* **Send mail**
+* **Send mail.**
+
   { send emails with the credentials of the victims. }
 
 
