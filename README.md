@@ -11,9 +11,9 @@ This is the official and only repository of the SocialFish project.
 
 ##### OTHER CONTRIBUTORS
 
-- cloaksec [ Added Twitter #10][pull-cloaksec]
-- adiranas [ Added macOS support #12 ][pull-adiranas]
-- greenmind-sec [ Using Docker #46 ][pull-grenmind-sec]
+- **cloaksec** [ Added Twitter #10][pull-cloaksec]
+- **adiranas** [ Added macOS support #12 ][pull-adiranas]
+- **greenmind-sec** [ Using Docker #46 ][pull-grenmind-sec]
 
 ### PREREQUISITES
 
