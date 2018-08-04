@@ -44,7 +44,7 @@ $ python3 SocialFish.py
 ### USING ANDROID/TERMUX
 
 ```sh
-$ pkg install python php curl git
+$ pkg install python php curl git unzip
 $ git clone https://github.com/UndeadSec/SocialFish.git
 $ cd SocialFish
 $ pip install -r requirements.txt
