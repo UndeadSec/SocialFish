@@ -34,6 +34,7 @@ def main():
         print(red(' [!] Your authentication failed'))
     except IndexError:
         print(red(' [!] this domain is not supported'))
+    
         
     social,others = cyan(' [{}{}\n\n'.format(bold((cyan('S'))),cyan(']ocial Media'))),cyan(' [{}{}\n\n'.format(bold((cyan('O'))),cyan(']thers')))
     preoption = input(cyan('\n Select an option\n\n') + social + others + cyan(' SF > '))
@@ -101,6 +102,4 @@ if __name__ == "__main__":
         system('pkill -f php')
         end()
         exit(0)
-    except SMTPSenderRefused:
-        print(' [!] sorry, sender refused ;(')
-        
+       
