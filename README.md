@@ -24,6 +24,7 @@ This is the official and only repository of the SocialFish project.
 - PHP
 - curl
 - git
+- unzip
 
 ### CLONE
 
