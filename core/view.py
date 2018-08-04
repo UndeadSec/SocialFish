@@ -101,12 +101,18 @@ def checkmail():
     if input(cyan('\n [!] Do you want to receive credentials by email? [y/N] > ')).upper() == 'Y':
         
         login = input(cyan(' [+] Enter your email > '))
-        passwd = getpass(cyan(' [+] Password > '))
+
         try:
             provider = login.split('@')[1].split('.')[0]
-        except IndexError:
-             print(red(' [!] This domain is not supported!'))
-             return
+        except (IndexError, ValueError):
+            print(red(' [!] This domain is not supported!'))
+            return	
+	
+        if provider.lower() == 'gmail':
+            print(yellow(' [!] before access please enable less secure apps - https://myaccount.google.com/lesssecureapps'))
+
+        passwd = getpass(cyan(' [+] Password > '))
+      
         domain, port = smtp_provider(provider)
 
         connect_smtp(domain, port, login, passwd)
