@@ -15,16 +15,18 @@ This is the official and only repository of the SocialFish project.
 - **adiranas** [ Added macOS support #12 ][pull-adiranas]
 - **greenmind-sec** [ Using Docker #46 ][pull-grenmind-sec]
 
-### PREREQUISITES
+##### PREREQUISITES
 
 - Python 3.x 
 - pip3
-- wget from Python 3.x
-- huepy from Python 3.x
 - PHP
 - curl
 - git
 - unzip
+
+##### PYTHON 3 PREREQUISITES
+- wget
+- huepy
 
 ### CLONE
 
