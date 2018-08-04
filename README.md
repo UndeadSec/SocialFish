@@ -86,7 +86,7 @@ $ sudo docker run -it --rm "socialfish"
 **Domain support:**
 
 |Domain|Tested|
-|:---:|:---:|
+|:---|:---:|
 |@globo|1|
 |@gmail|1|
 |@hotmail|1|
