@@ -82,7 +82,7 @@ $ sudo docker run -it --rm "socialfish"
 |Steam|1|0|
 
 ### SEND MAIL WITH CREDENTIALS
-**domain support:**
+**Domain support:**
 
 - BOL
 - GLOBO
