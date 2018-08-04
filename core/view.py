@@ -109,7 +109,7 @@ def checkmail():
             return	
 	
         if provider.lower() == 'gmail':
-            print(yellow(' [!] before access please enable less secure apps - https://myaccount.google.com/lesssecureapps'))
+            print(yellow(' [!] Before access please enable less secure apps\n --> [https://myaccount.google.com/lesssecureapps]'))
 
         passwd = getpass(cyan(' [+] Password > '))
       
