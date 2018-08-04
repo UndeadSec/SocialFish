@@ -5,86 +5,67 @@
 This is the official and only repository of the SocialFish project.
 
 ### MAINTAINERS
-* **Alisson Moretto** | 
-Twitter: <a href="https://twitter.com/A1S0N_">@A1S0N_</a>
-Github: <a href="https://github.com/A1S0N">@A1S0N</a>
+
+- **Alisson Moretto**, Twitter: [@A1S0N_][tw-alisson], Github: [@A1S0N][git-alisson]
+- **Vandré Augusto**, Twitter: [@dr1nKoRdi3][tw-drink], Github: [@dr1nK0Rdi3][git-drink]
 
 ##### OTHER CONTRIBUTORS
 
-##### - **cloaksec** [ Add Twitter <a href="https://github.com/UndeadSec/SocialFish/pull/10">#10</a> ] 
-##### - **adiranas** [ Added macOS support <a href="https://github.com/UndeadSec/SocialFish/pull/12">#12</a> ]
-##### - **greenmind-sec** [ Using Docker  <a href="https://github.com/UndeadSec/SocialFish/pull/46">#46</a> ]
+- **cloaksec** [ Added Twitter #10][pull-cloaksec]
+- **adiranas** [ Added macOS support #12 ][pull-adiranas]
+- **greenmind-sec** [ Using Docker #46 ][pull-grenmind-sec]
 
 ### PREREQUISITES
 
-* Python 3.x 
-* pip3
-* wget from Python 3.x
-* huepy from Python 3.x
-* PHP
-* curl
-* git
+- Python 3.x 
+- pip3
+- wget from Python 3.x
+- huepy from Python 3.x
+- PHP
+- curl
+- git
 
 ### CLONE
-```
-git clone https://github.com/UndeadSec/SocialFish.git
+
+```sh
+$ git clone https://github.com/UndeadSec/SocialFish.git
 ```
 
 ### RUNNING
 
-```
-cd SocialFish
-```
-
-```
-sudo apt-get install python3-pip php -y
-```
-
-```
-sudo pip3 install -r requirements.txt
-```
-
-```
-python3 SocialFish.py
+```sh
+$ cd SocialFish
+$ sudo apt-get install python3-pip php -y
+$ sudo pip3 install -r requirements.txt
+$ python3 SocialFish.py
 ```
 
 ### USING ANDROID/TERMUX
 
-```
-pkg install python php curl git
-```
-
-```
-git clone https://github.com/UndeadSec/SocialFish.git
-```
-
-```
-cd SocialFish
-```
-
-```
-pip install -r requirements.txt
-```
-
-```
-python SocialFish.py
+```sh
+$ pkg install python php curl git
+$ git clone https://github.com/UndeadSec/SocialFish.git
+$ cd SocialFish
+$ pip install -r requirements.txt
+$ python SocialFish.py
 ```
 
 ### USING DOCKER
 
 Create image using docker
-```
-sudo docker build -t "socialfish" .
+```sh
+$ sudo docker build -t "socialfish" .
 ```
 
 Using image
-```
-sudo docker run -it --rm "socialfish"
+```sh
+$ sudo docker run -it --rm "socialfish"
 ```
 
-**VIDEO DEMO:** https://youtu.be/FMYdnzjEBiQ
+**VIDEO DEMO:** [https://youtu.be/FMYdnzjEBiQ][yt-demo]
 
-## AVAILABLE PAGES
+
+### AVAILABLE PAGES
 
 |Available Pages|Traditional|Similar|
 |:---|:---:|:---:|
@@ -99,6 +80,22 @@ sudo docker run -it --rm "socialfish"
 |Snapchat|1|0|
 |VK|1|0|
 |Steam|1|0|
+
+### SEND MAIL WITH CREDENTIALS
+**domain support:**
+
+- BOL
+- GLOBO
+- GMAIL
+- HOTMAIL
+- IG
+- LIVE
+- OI
+- OUTLOOK
+- TERRA
+- UOL
+- YAHOO
+
 
 **PULL REQUESTS ARE WELCOME**
 
@@ -145,9 +142,26 @@ Taken from [LICENSE](LICENSE).
   
   { Better interface and design. }
 
+* **Send mail.**
+
+  { send emails with the credentials of the victims. }
+
+
 ### DONATION
 If you liked our work and want to support us, you can donate :D
 
-<img src="https://raw.githubusercontent.com/UndeadSec/SocialFish/master/Images/donation.png"></img>
+![donation](https://raw.githubusercontent.com/UndeadSec/SocialFish/master/Images/donation.png)
 
 Bitcoin Address: 1EmJ5KiAKzpyqGGHopAq9qukrVPS47T9bA
+
+[//]: # (links references)
+
+[tw-alisson]: <https://twitter.com/A1S0N_>
+[git-alisson]: <https://github.com/A1S0N>
+[tw-drink]: <https://twitter.com/Dr1nkOrdi3>
+[git-drink]: <https://github.com/dr1nk0rdi3>
+[pull-cloaksec]: <https://github.com/UndeadSec/SocialFish/pull/10>
+[pull-adiranas]: <https://github.com/UndeadSec/SocialFish/pull/12>
+[pull-grenmind-sec]: <https://github.com/UndeadSec/SocialFish/pull/46>
+[yt-demo]: <https://youtu.be/FMYdnzjEBiQ>
+
