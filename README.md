@@ -151,10 +151,6 @@ Taken from [LICENSE](LICENSE).
   
   { Better interface and design. }
 
-* **Send mail.**
-
-  { send emails with the credentials of the victims. }
-
 
 ### DONATION
 If you liked our work and want to support us, you can donate :D
