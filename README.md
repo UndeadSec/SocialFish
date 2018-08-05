@@ -127,9 +127,9 @@ Taken from [LICENSE](LICENSE).
 
 ### CHANGELOG
 
-* **Email logs.**
+* **Email and File logs .**
   
-  { Send your logs to your email. }
+  { Store your credentials logs. }
   
 * **Full script updated to Python 3.x**
 
