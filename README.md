@@ -14,6 +14,7 @@ This is the official and only repository of the SocialFish project.
 - **cloaksec** [ Added Twitter #10][pull-cloaksec]
 - **adiranas** [ Added macOS support #12 ][pull-adiranas]
 - **greenmind-sec** [ Using Docker #46 ][pull-grenmind-sec]
+- **tatsuryu** [Using context manager to control external processes #55][pull-tatsuryu]
 
 ##### PREREQUISITES
 
@@ -168,5 +169,6 @@ Bitcoin Address: 1EmJ5KiAKzpyqGGHopAq9qukrVPS47T9bA
 [pull-cloaksec]: <https://github.com/UndeadSec/SocialFish/pull/10>
 [pull-adiranas]: <https://github.com/UndeadSec/SocialFish/pull/12>
 [pull-grenmind-sec]: <https://github.com/UndeadSec/SocialFish/pull/46>
+[pull-tatsuryu]: <https://github.com/UndeadSec/SocialFish/pull/55>
 [yt-demo]: <https://youtu.be/FMYdnzjEBiQ>
 
