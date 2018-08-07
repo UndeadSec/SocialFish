@@ -74,9 +74,7 @@ def ngrok_start(port: int):
     )
     while True:
         try:
-            ngrok_url = requests.get(
-                'http://127.0.0.1:4040/api/tunnels/command_line'
-            )
+            ngrok_url = requests.get('http://127.0.0.1:4040/api/tunnels/command_line')
             if ngrok_url.status_code == 200:
                 public_url = json.loads(ngrok_url.text)['public_url']
                 print(lightgreen('\n [*] Ngrok URL: %s' % public_url))
