@@ -80,9 +80,8 @@ def ngrok_start(port: int):
             if ngrok_url.status_code == 200:
                 public_url = json.loads(ngrok_url.text)['public_url']
                 print(green('\n [*] Ngrok URL: %s' % public_url))
-                print(
-                    yellow(' [^] Press Ctrl+C or VolDown+C(android) to quit')
-                    )
+                print(green(' [*] Your logs are being stored in: Logs/{}').format(_social + strftime('-%y%m%d.txt')))
+                print(yellow(' [^] Press Ctrl+C or VolDown+C(android) to quit'))
                 yield public_url
                 break
         except requests.exceptions.ConnectionError:
