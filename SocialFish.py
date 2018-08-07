@@ -23,6 +23,7 @@ from core.view import *
 from core.pre import *
 from core.phishingRunner import *
 from core.sites import site
+from core.email import objsmtp
 from smtplib import *
 
 def main():
@@ -102,4 +103,5 @@ if __name__ == "__main__":
         system('pkill -f php')
         end()
         exit(0)
-       
+    finally:
+        if objsmtp(): objsmtp().quit()
