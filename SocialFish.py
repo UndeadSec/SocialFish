@@ -23,13 +23,15 @@ from multiprocessing import Process
 # Anti Newbie :)
 try:
     from core.view import *
+    from core.pre import *
 except:
     import pip
     pip.main(['install', 'huepy'])
+    pip.main(['install', 'wget'])
     from core.view import *
+    from core.pre import *
     clear()
     
-from core.pre import *
 from core.phishingRunner import *
 from core.sites import site
 from smtplib import *
