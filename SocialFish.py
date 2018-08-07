@@ -19,7 +19,16 @@ if version_info<(3,0,0):
     exit(0)
 
 from multiprocessing import Process
-from core.view import *
+
+# Anti Newbie :)
+try:
+    from core.view import *
+except:
+    import pip
+    pip.main(['install', 'huepy'])
+    from core.view import *
+    clear()
+    
 from core.pre import *
 from core.phishingRunner import *
 from core.sites import site
