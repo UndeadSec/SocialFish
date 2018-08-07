@@ -39,7 +39,7 @@ $ git clone https://github.com/UndeadSec/SocialFish.git
 
 ```sh
 $ cd SocialFish
-$ sudo apt-get install python3-pip php -y
+$ sudo apt-get install python3-pip php unzip -y
 $ sudo pip3 install -r requirements.txt
 $ python3 SocialFish.py
 ```
