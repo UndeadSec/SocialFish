@@ -154,7 +154,7 @@ Taken from [LICENSE](LICENSE).
 
 
 ### DONATION
-If you liked our work and want to support us, you can donate :D
+If you liked our work and want to support us, you may donate :D
 
 ![donation](https://raw.githubusercontent.com/UndeadSec/SocialFish/master/Images/donation.png)
 
