@@ -1,4 +1,5 @@
 setuptools == 40.0.0
+requests
 
 # core/email.py: 1
 # core/phishingRunner.py: 15
