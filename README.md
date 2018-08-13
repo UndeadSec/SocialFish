@@ -6,7 +6,7 @@ This is the official and only repository of the SocialFish project.
 
 ### MAINTAINERS
 
-- **Alisson Moretto**, Twitter: [@A1S0N_][tw-alisson], Github: [@A1S0N][git-alisson]
+- **Alisson Moretto**, Twitter: [@UndeadSec][tw-alisson], Github: [@A1S0N][git-alisson]
 - **Vandré Augusto**, Twitter: [@dr1nKoRdi3][tw-drink], Github: [@dr1nK0Rdi3][git-drink]
 
 ##### OTHER CONTRIBUTORS
@@ -162,7 +162,7 @@ Bitcoin Address: 1EmJ5KiAKzpyqGGHopAq9qukrVPS47T9bA
 
 [//]: # (links references)
 
-[tw-alisson]: <https://twitter.com/A1S0N_>
+[tw-alisson]: <https://twitter.com/UndeadSec>
 [git-alisson]: <https://github.com/A1S0N>
 [tw-drink]: <https://twitter.com/Dr1nkOrdi3>
 [git-drink]: <https://github.com/dr1nk0rdi3>
