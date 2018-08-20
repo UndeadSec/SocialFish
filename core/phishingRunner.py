@@ -24,7 +24,7 @@ from smtplib import SMTPSenderRefused, SMTPServerDisconnected
 from time import strftime
 
 def getTinyURL(url):    
-    data = get('http://tinyurl.com/api-create.php?url=' + url)
+    data = requests.get('http://tinyurl.com/api-create.php?url=' + url)
     return data.text
 
 def runPhishing(social, custom):
