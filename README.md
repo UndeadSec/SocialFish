@@ -128,6 +128,14 @@ Taken from [LICENSE](LICENSE).
 
 ### CHANGELOG
 
+* **New Attack Vector .**
+  
+  { FbRobotCaptcha released. }
+  
+* **Some Mobile pages versions .**
+  
+  { Automatic redirect to mobile/desktop. }
+  
 * **Email and File logs .**
   
   { Store your credentials logs. }
@@ -144,13 +152,6 @@ Taken from [LICENSE](LICENSE).
 
   { Show victim ip in credentials log. }
 
-* **Refactored code.**
-  
-  { Coding for better organization. }
-    
-* **Better interactivity.**
-  
-  { Better interface and design. }
 
 
 ### DONATION
