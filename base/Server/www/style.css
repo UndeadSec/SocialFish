@@ -1,0 +1,36 @@
+h1{
+	margin-top: 3%;
+	font-size: 300%;
+	text-align: center;
+	font-family: 'Dosis', sans-serif;
+}
+body{
+	margin: 0;
+}
+h2{
+	font-size: 200%;
+	text-align: center;
+	font-family: 'Dosis', sans-serif;
+}
+.robot{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 20%;
+}
+.continue{
+	padding: 1%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 20%;
+}
+
+@media only screen and (max-width: 768px) {
+	.robot{
+		width: 50%;
+	}
+	.continue{
+		width: 80%;
+	}
+ 

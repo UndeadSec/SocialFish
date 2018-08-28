@@ -55,12 +55,12 @@ def main():
 
         if preoption.upper() == 'S':
             print('')
-            for x in range(1, 8):
+            for x in range(1, 9):
                 print(cyan(' [' + bold(cyan(str(x))) + cyan('] ' + site[str(x)])))
             while True:
                 try:
                     option = input(cyan('\n SF > '))
-                    if int(option) in range(1,8):
+                    if int(option) in range(1,9):
                         while True:
                             custom = input(cyan('\n Insert a custom redirect url: > '))
                             if not custom:
@@ -75,12 +75,12 @@ def main():
 
         elif preoption.upper() == 'O':       
             print('')
-            for x in range(8, 12):
+            for x in range(9, 13):
                 print(cyan(' [' + bold(cyan(str(x))) + cyan('] ' + site[str(x)])))
             while True:
                 try:
                     option = input(cyan('\n SF > '))
-                    if int(option) in range(8,12):
+                    if int(option) in range(9,13):
                         while True:
                             custom = input(cyan('\n Insert a custom redirect url: > '))
 
