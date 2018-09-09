@@ -10,11 +10,8 @@ This is the official and only repository of the SocialFish project.
 - **Vandré Augusto**, Twitter: [@dr1nKoRdi3][tw-drink], Github: [@dr1nK0Rdi3][git-drink]
 
 ##### OTHER CONTRIBUTORS
-
-- **cloaksec** [ Added Twitter #10][pull-cloaksec]
-- **adiranas** [ Added macOS support #12 ][pull-adiranas]
 - **greenmind-sec** [ Using Docker #46 ][pull-grenmind-sec]
-- **tatsuryu** [Using context manager to control external processes #55][pull-tatsuryu]
+- **tatsuryu** [Using context manager to control external processes #55][pull-tatsuryu] | [Added menu submodule #68][pull-tatsuryu2]
 
 ##### PREREQUISITES
 
@@ -167,9 +164,8 @@ Bitcoin Address: 1EmJ5KiAKzpyqGGHopAq9qukrVPS47T9bA
 [git-alisson]: <https://github.com/A1S0N>
 [tw-drink]: <https://twitter.com/Dr1nkOrdi3>
 [git-drink]: <https://github.com/dr1nk0rdi3>
-[pull-cloaksec]: <https://github.com/UndeadSec/SocialFish/pull/10>
-[pull-adiranas]: <https://github.com/UndeadSec/SocialFish/pull/12>
 [pull-grenmind-sec]: <https://github.com/UndeadSec/SocialFish/pull/46>
 [pull-tatsuryu]: <https://github.com/UndeadSec/SocialFish/pull/55>
+[pull-tatsuryu2]: <https://github.com/UndeadSec/SocialFish/pull/68>
 [yt-demo]: <https://youtu.be/FMYdnzjEBiQ>
 
