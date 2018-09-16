@@ -13,6 +13,7 @@
 from os import system
 from huepy import *
 from sys import exit
+from pathlib import Path
 
 def clear():
     system('clear')
@@ -98,22 +99,33 @@ def checkmail():
     from getpass import getpass
     from smtplib import SMTP
 
+
+
     if input(cyan('\n [!] Do you want to receive credentials by email? [y/N] > ')).upper() == 'Y':
-        
-        login = input(cyan(' [+] Enter your email > '))
-
-        try:
+        try: 
+            first_line = open("mail.txt","r")
+            separator = ":"
+            line = first_line.readline().strip()
+            sout = line.split(separator)
+            login = sout[0]
+            passwd = sout[1]
             provider = login.split('@')[1].split('.')[0]
-        except (IndexError, ValueError):
-            print(red(' [!] This domain is not supported!'))
-            return	
+            domain, port = smtp_provider(provider)
+            connect_smtp(domain, port, login, passwd)
+            return
+        except FileNotFoundError:
+            login = input(cyan(' [+] Enter your email > '))
+            try:
+                provider = login.split('@')[1].split('.')[0]
+            except (IndexError, ValueError):
+                print(red(' [!] This domain is not supported!'))
+                return	
 	
-        if provider.lower() == 'gmail':
-            print(yellow(' [!] Before access please enable less secure apps\n --> [https://myaccount.google.com/lesssecureapps]'))
+            if provider.lower() == 'gmail':
+                print(yellow(' [!] Before access please enable less secure apps\n --> [https://myaccount.google.com/lesssecureapps]'))
 
-        passwd = getpass(cyan(' [+] Password > '))
+            passwd = getpass(cyan(' [+] Password > '))
       
-        domain, port = smtp_provider(provider)
+            domain, port = smtp_provider(provider)
 
-        connect_smtp(domain, port, login, passwd)
-        
+            connect_smtp(domain, port, login, passwd)
