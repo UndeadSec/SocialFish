@@ -34,7 +34,6 @@ def phpNot():
 def pyNot():
     print(red("\n\n[!] Please use Python 3. $ python3 SocialFish.py "))
 
-
 def ngrokNot():
     print(red("\n\n[!] Ngrok not found. Downloading..."))
 
