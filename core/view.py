@@ -35,7 +35,7 @@ def pyNot():
     print(red("[!] Please use Python 3. $ python3 SocialFish.py "))
 
 def ngrokNot():
-    print(red("[!] Ngrok not found. Downloading..."))
+    print(red("[!] Ngrok not found. Downloading it..."))
 
 def head():
     clear()
