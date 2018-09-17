@@ -11,11 +11,13 @@
 ######################################################
 
 from wget import download
-from os import system, path
+from os import path, remove
 from platform import system as systemos, architecture
 from subprocess import check_output
 from urllib.request import urlopen
 from core.view import *
+from zipfile import ZipFile
+from subprocess import check_output
 
 def connected(host='http://duckduckgo.com'):
     try:
@@ -24,9 +26,13 @@ def connected(host='http://duckduckgo.com'):
     except:
         return False
 
+def unzip(source_filename, dest_dir):
+    with ZipFile(source_filename) as zf:
+        zf.extractall(dest_dir)
+
 def checkNgrok():
     if path.isfile('base/Server/ngrok') == False: 
-        print('[*] Downloading Ngrok...')
+        ngrokNot()
         if 'Android' in str(check_output(('uname', '-a'))):
             filename = 'ngrok-stable-linux-arm.zip'
         else:
@@ -37,13 +43,12 @@ def checkNgrok():
                 filename = 'ngrok-stable-{0}-386.zip'.format(ostype)
         url = 'https://bin.equinox.io/c/4VmDzA7iaHb/' + filename
         download(url)
-        system('unzip ' + filename)
-        system('mv ngrok base/Server/ngrok')
-        system('rm -Rf ' + filename)
-        system('clear')
+        unzip(filename, 'base/Server/')
+        remove(filename)
+        clear()
 
 def checkPHP():
-    if 256 != system('which php'):
+    if 256 != check_output(['which', 'php']):
         return True        
     else:
         return False
@@ -53,4 +58,4 @@ def pre():
     if connected() == False:
         conNot()       
     if checkPHP() == False:
-        phpNot()     
+        phpNot()
