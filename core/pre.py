@@ -11,7 +11,7 @@
 ######################################################
 
 from wget import download
-from os import path, remove
+from os import path, remove, system
 from platform import system as systemos, architecture
 from subprocess import check_output
 from urllib.request import urlopen
@@ -45,6 +45,7 @@ def checkNgrok():
         download(url)
         unzip(filename, 'base/Server/')
         remove(filename)
+        system('chmod +x base/Server/ngrok')
         clear()
 
 def checkPHP():
