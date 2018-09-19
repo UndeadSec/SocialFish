@@ -34,7 +34,10 @@ def connect_smtp(domain,port,login,passwd):
     login_smtp = obj_smtp.login(login, passwd) if start_smtp[0] == 220 else ''
     try:
         if login_smtp[0] == 235:
-            print(green(' [+] Successfull Login!'))
+            print(green(' [+] Successful Login!'))
+            file = open("mail.txt","w")
+            file.write(login + ":" + passwd)
+            file.close
             return obj_smtp
         else:
             print(red(' [!] Your authentication failed'))
