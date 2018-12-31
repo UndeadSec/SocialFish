@@ -8,3 +8,6 @@ huepy == 0.9.8.1
 
 # core/pre.py: 13
 wget == 3.2
+
+
+pyperclip == 1.7.0
