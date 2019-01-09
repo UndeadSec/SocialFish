@@ -19,4 +19,4 @@ RUN wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip &&\
     chmod +x /root/SocialFish.py &&\
     ln -s /root/SocialFish.py /bin/SocialFish
 
-ENTRYPOINT ["/root/SocialFish/SocialFish.py"]
+ENTRYPOINT ["/root/SocialFish.py"]
