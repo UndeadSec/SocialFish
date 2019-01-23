@@ -68,7 +68,7 @@ def runServer(port: int):
 @contextmanager
 def ngrok_start(port: int):
     ngrok_process = subprocess.Popen(
-        ['./base/Server/ngrok','http','%s' % port], 
+        ['./base/Server/ngrok','http','127.0.0.1:%s' % port], 
         stdout=subprocess.PIPE, 
         stderr=subprocess.PIPE
     )
