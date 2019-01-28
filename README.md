@@ -1,4 +1,3 @@
-
 **ONLY DOWNLOAD IT HERE, DO NOT TRUST IN OTHER PLACES.**
 
 This is the official and only repository of the SocialFish project.
