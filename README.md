@@ -65,23 +65,6 @@ $ sudo docker run -it --rm "socialfish"
 
 **VIDEO DEMO:** [https://youtu.be/FMYdnzjEBiQ][yt-demo]
 
-
-### AVAILABLE PAGES
-
-|Available Pages|Traditional|Similar|
-|:---|:---:|:---:|
-|Facebook|1|0|
-|Google|1|0|
-|LinkedIn|1|0|
-|GitHub|1|0|
-|StackOverflow|1|0||
-|Wordpress|0|1|
-|Twitter|1|0|
-|Instagram|1|0|
-|Snapchat|1|0|
-|VK|1|0|
-|Steam|1|0|
-
 ### SEND MAIL WITH CREDENTIALS
 **Domain support:**
 
