@@ -13,7 +13,6 @@
 ######################################################
 
 from sys import exit, version_info
-
 if version_info<(3,0,0):
     print('[!] Please use Python 3. $ python3 SocialFish.py')
     exit(0)
@@ -39,6 +38,8 @@ from core.email import objsmtp
 from smtplib import *
 
 def main():
+    print(red("This version will not work anymore. Wait please until the next release. Sorry for inconvenience."))
+    exit(0)
     head()
     checkEd()    
     try:
