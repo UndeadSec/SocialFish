@@ -1,7 +1,7 @@
 ## SOCIAL FISH
 Are you looking for SF's mobile controller? [UndeadSec/SocialFishMobile][sf-mobile]
 
-<img src=""/>
+Visit the [wiki](<https://github.com/UndeadSec/SocialFish/wiki>) for more details.
 
 #### MAINTAINERS
 - **Alisson Moretto**, Twitter: [@A1S0N_][tw-alisson], Github: [@A1S0N][git-alisson]
