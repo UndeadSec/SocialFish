@@ -3,11 +3,13 @@ Are you looking for SF's mobile controller? [UndeadSec/SocialFishMobile][sf-mobi
 
 <img src=""/>
 
-### MAINTAINERS
+#### MAINTAINERS
 
 - **Alisson Moretto**, Twitter: [@A1S0N_][tw-alisson], Github: [@A1S0N][git-alisson]
 - **Vandré Augusto**, Twitter: [@dr1nKoRdi3][tw-drink], Github: [@dr1nK0Rdi3][git-drink]
 
+#### MOBILE MAINTAINERS
+- **Tiago R. Lampert**, Github: [@tiagorlampert][git-tiago]
 
 ##### PREREQUISITES
 
@@ -65,3 +67,4 @@ Taken from [LICENSE](LICENSE).
 [tw-drink]: <https://twitter.com/Dr1nkOrdi3>
 [git-drink]: <https://github.com/dr1nk0rdi3>
 [sf-mobile]: <https://github.com/UndeadSec/SocialFishMobile>
+[git-tiago]: <https://github.com/tiagorlampert>
