@@ -1,4 +1,6 @@
 # SOCIAL FISH
+Are you looking for SF's mobile controller? [UndeadSec/SocialFishMobile][sf-mobile]
+
 <img src=""/>
 
 ### MAINTAINERS
@@ -62,3 +64,4 @@ Taken from [LICENSE](LICENSE).
 [git-alisson]: <https://github.com/A1S0N>
 [tw-drink]: <https://twitter.com/Dr1nkOrdi3>
 [git-drink]: <https://github.com/dr1nk0rdi3>
+[sf-mobile]: <https://github.com/UndeadSec/SocialFishMobile>
