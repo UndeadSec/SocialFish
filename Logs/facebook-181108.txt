@@ -1,9 +1,0 @@
-
-facebook
-<user>: sdsads
-<pass>: sdfds
-<ip>: 2804:d55:a70:9600:b47c:457e:f8cc:4e34
-<country>: Brazil
-<city>: Barbosa Ferraz
-
-    
