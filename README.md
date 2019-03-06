@@ -1,6 +1,5 @@
 # SOCIAL FISH
-
-This is the official and only repository of the SocialFish project.
+<img src=""/>
 
 ### MAINTAINERS
 
@@ -41,9 +40,6 @@ $ sudo pip3 install -r requirements.txt
 $ python3 SocialFish.py username password
 ```
 Go to <YOURDOMAIN/IP>/neptune
-
-### SCREENSHOT
-![Shot]()
 
 ## DISCLAIMER
 
