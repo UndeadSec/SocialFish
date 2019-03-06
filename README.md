@@ -40,7 +40,7 @@ $ sudo apt-get install python3 python3-pip -y
 $ sudo pip3 install -r requirements.txt
 $ python3 SocialFish.py username password
 ```
-Go to <YOURDOMAIN/IP>/neptune.
+Go to <YOURDOMAIN/IP>/neptune
 
 ### SCREENSHOT
 ![Shot]()
