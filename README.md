@@ -10,40 +10,6 @@ Are you looking for SF's mobile controller? [UndeadSec/SocialFishMobile][sf-mobi
 #### MOBILE MAINTAINERS
 - **Tiago R. Lampert**, Github: [@tiagorlampert][git-tiago]
 
-##### PREREQUISITES
-
-- Python 3.x 
-- pip3
-
-##### PYTHON 3 PREREQUISITES
-- flask
-- colorama
-- sqlite3
-- flask_login
-- shutil
-- re
-- os
-- secrets
-- python-nmap
-- smtplib
-- email
-
-### CLONE
-
-```sh
-$ git clone https://github.com/UndeadSec/SocialFish.git
-```
-
-### RUNNING
-
-```sh
-$ cd SocialFish
-$ sudo apt-get install python3 python3-pip -y
-$ sudo pip3 install -r requirements.txt
-$ python3 SocialFish.py username password
-```
-Go to <YOURDOMAIN/IP>/neptune
-
 ### DISCLAIMER
 
 TO BE USED FOR EDUCATIONAL PURPOSES ONLY
