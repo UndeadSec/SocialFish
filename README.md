@@ -1,10 +1,9 @@
-# SOCIAL FISH
+## SOCIAL FISH
 Are you looking for SF's mobile controller? [UndeadSec/SocialFishMobile][sf-mobile]
 
 <img src=""/>
 
 #### MAINTAINERS
-
 - **Alisson Moretto**, Twitter: [@A1S0N_][tw-alisson], Github: [@A1S0N][git-alisson]
 - **Vandré Augusto**, Twitter: [@dr1nKoRdi3][tw-drink], Github: [@dr1nK0Rdi3][git-drink]
 
@@ -45,7 +44,7 @@ $ python3 SocialFish.py username password
 ```
 Go to <YOURDOMAIN/IP>/neptune
 
-## DISCLAIMER
+### DISCLAIMER
 
 TO BE USED FOR EDUCATIONAL PURPOSES ONLY
 
