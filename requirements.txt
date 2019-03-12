@@ -9,3 +9,5 @@ secrets
 python-nmap
 smtplib
 email
+pylatex
+qrcode
