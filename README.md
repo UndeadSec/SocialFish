@@ -1,4 +1,8 @@
-## SOCIAL FISH
+<p align="center">
+  <img src="https://raw.githubusercontent.com/UndeadSec/SocialFishMobile/master/content/logo.png" width="200"/>
+</a></p>
+<h1 align="center">SocialFish</h1>
+
 Are you looking for SF's mobile controller? [UndeadSec/SocialFishMobile][sf-mobile]
 
 Visit the [wiki](<https://github.com/UndeadSec/SocialFish/wiki>) for more details.
