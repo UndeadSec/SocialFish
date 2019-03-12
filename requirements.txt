@@ -1,9 +1,9 @@
 flask
 colorama
-sqlite3
+# sqlite3
 flask_login
-shutil
-re
+# shutil
+# re
 secrets
 python-nmap
 smtplib
