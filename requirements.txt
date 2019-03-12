@@ -6,4 +6,4 @@ Flask==1.0.2
 colorama==0.4.1
 Flask_Login==0.4.1
 nmap==0.0.1
-secrets==1.0.2
+python-secrets
