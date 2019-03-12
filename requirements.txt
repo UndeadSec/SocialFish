@@ -1,4 +1,4 @@
-requests==2.18.4
+requests==2.20.0
 PyLaTeX==1.3.0
 python_nmap==0.6.1
 qrcode==6.1
