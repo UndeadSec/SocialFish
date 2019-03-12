@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="SocialFish">
+    <meta name="author" content="UndeadSec">
+    <meta name="keywords" content="SocialFish">
+
+    <!-- Title Page-->
+    <title>SocialFish Neptune</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="/css/font-face.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS-->
+    <link href="/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/css/theme.css" rel="stylesheet" media="all">
+
+</head>
+<body>
+    <br>
+    <div class="container">
+    <div class="card">
+        <div class="card-header">
+            <a href="/creds"><i class="fas fa-arrow-left"></i> <strong>SocialFish</strong></a>/Send Mail
+        </div>
+        <div class="card-body card-block">
+            <form action="/mail" method="POST" enctype="multipart/form-data" class="form-horizontal">            
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="text-input" class=" form-control-label">Subject</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="text-input" name="subject" placeholder="Text" class="form-control" required>
+                        <small class="form-text text-muted">This is a subject text</small>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="email-input" class=" form-control-label">Email</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="email" id="email" name="email" placeholder="Enter Email" class="form-control" value="{{email}}" required>
+                        <small class="help-block form-text">Please enter your email</small>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="password-input" class=" form-control-label">Password</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="password" id="password" name="password" placeholder="Password" class="form-control" required>
+                        <small class="help-block form-text">Please enter your email password</small>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="email-input" class=" form-control-label">Recipient</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="recipient" name="recipient" placeholder="Enter Email" class="form-control" required>
+                        <small class="help-block form-text">Please enter recipient email (i.e. multiple: one@one.com, two@two.com)</small>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="textarea-input" class=" form-control-label">Body</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <textarea name="body" id="body" rows="9" placeholder="Content..." class="form-control" required></textarea>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="text-input" class=" form-control-label">Smtp</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="smtp" name="smtp" placeholder="Enter Smtp" class="form-control" value="{{smtp}}" required>
+                        <small class="form-text text-muted">Please enter your smtp server</small>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="text-input" class=" form-control-label">Port</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="port" name="port" placeholder="Enter Port" class="form-control" value="{{port}}" required>
+                        <small class="form-text text-muted">Please enter your smtp server port</small>
+                    </div>                    
+                </div>                
+                <div class="alert alert-info" role="alert">
+                    If you're using Gmail, you must enable <b><a href="https://myaccount.google.com/lesssecureapps" target="_blank" rel="nofollow">less secure app access</a></b>
+                </div>
+                <div class="card-footer" style="text-align: right;">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Submit
+                    </button>
+                </div>
+            </form>
+        </div>        
+    </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+</body>
+</html>

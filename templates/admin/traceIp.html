@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+</head>
+<body>
+    <h5>Displaying Ip Tracing Information @{{ip}}</h5>
+    <span style="display:block; word-wrap:break-word;">
+        <img src="https://lipis.github.io/flag-icon-css/flags/4x3/{{ traceIp['country_code'].lower() }}.svg" style="width: 33.5px; height: 25px;"> {{traceIp['country_name']}}<br>
+        <i class="fas fa-map-marker"></i> City: {{traceIp['city']}}<br>
+        <i class="fas fa-envelope"></i> Postal: {{traceIp['postal']}}<br>
+        <i class="fas fa-flag"></i> State: {{traceIp['state']}}<br>
+        <i class="fas fa-globe"></i> Latitude: {{traceIp['latitude']}}<br>
+        <i class="fas fa-globe"></i> Longitude: {{traceIp['longitude']}}<br>
+        <a href="https://www.google.com/maps/?q={{traceIp['latitude']}},{{traceIp['longitude']}}" target="_blank" rel="nofollow"><i class="zmdi zmdi-gps-dot"></i> View on Google Maps</a> 
+    </span>    
+
+    <script src="/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+  
+</body>
+</html>
+                                                                                                        

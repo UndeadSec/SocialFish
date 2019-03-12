@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="SocialFish">
+    <meta name="author" content="UndeadSec">
+    <meta name="keywords" content="SocialFish">
+
+    <!-- Title Page-->
+    <title>SocialFish Neptune</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="/css/font-face.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS-->
+    <link href="/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/css/theme.css" rel="stylesheet" media="all">
+
+</head>
+<body>
+    <br>
+    <div class="container">
+    <div class="card">
+        <div class="card-header">
+            <a href="/report"><i class="fas fa-arrow-left"></i> <strong>GenerateReport</strong></a>/AddProfessional
+        </div>
+        <div class="card-body card-block">
+            <form action="/professionals" method="POST" enctype="multipart/form-data" class="form-horizontal">            
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="text-input" class=" form-control-label">Name</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="name" name="name" placeholder="Name" class="form-control" required>
+                        <small class="form-text text-muted">Please enter professional's name</small>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="email-input" class=" form-control-label">Email</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="email" id="email" name="email" placeholder="Enter Email" class="form-control" required>
+                        <small class="help-block form-text">Please enter professional's email</small>
+                    </div>
+                </div>               
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="textarea-input" class=" form-control-label">Obs</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <textarea name="obs" id="obs" rows="9" placeholder="Content..." class="form-control" required></textarea>
+                    </div>
+                </div>                
+                <div class="card-footer" style="text-align: right;">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Submit
+                    </button>
+                </div>
+            </form>
+        </div>        
+    </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+</body>
+</html>

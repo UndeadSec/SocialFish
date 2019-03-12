@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="SocialFish">
+    <meta name="author" content="UndeadSec">
+    <meta name="keywords" content="SocialFish">
+
+    <!-- Title Page-->
+    <title>SocialFish Neptune</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="/css/font-face.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS-->
+    <link href="/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <!-- Main CSS-->
+    <link href="/css/theme.css" rel="stylesheet" media="all">
+
+    <!-- Date Picker -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+</head>
+<body>
+    <br>
+    <div class="container">
+    <div class="card">
+        <div class="card-header">
+            <a href="/creds"><i class="fas fa-arrow-left"></i> <strong>SocialFish</strong></a>/GenerateReport
+        </div>
+        <div class="card-body card-block">
+            <form action="/report" method="POST" class="form-horizontal">            
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="text-input" class=" form-control-label">Title</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="text-input" name="subject" value="SocialFish's Report" class="form-control" required="">
+                        <small class="form-text text-muted">Please enter report's title</small>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="select" class=" form-control-label">Professional</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="selectUser" id="selectUser" class="form-control" required="">                            
+                            <option>-----</option>
+                            {% for u in users %} 
+                            <option value="{{ u[0] }}">{{ u[0] }}</option>
+                            {% endfor %} 
+                        </select>
+                        <small class="form-text text-muted">Please select a professional or <b><a href="/professionals">add a new one</a></b></small>
+                    </div>
+                </div> 
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="select" class=" form-control-label">Company</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="selectCompany" id="selectCompany" class="form-control" required="">                            
+                            <option>-----</option>
+                            {% for c in companies %} 
+                            <option value="{{ c[0] }}">{{ c[0] }}</option>
+                            {% endfor %} 
+                        </select>
+                        <small class="form-text text-muted">Please select a company or <b><a href="/companies">add a new one</a></b></small>
+                    </div>
+                </div>                   
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="text-input" class="form-control-label">Pick a Date</label>                        
+                    </div>
+                    <div class="col-12 col-md-9">                        
+                        <input type="text" name="datefilter" value="" class="form-control" placeholder="XX/XX/XXXX" required="" />     
+                        <small class="form-text text-muted"><i class="fa fa-calendar"></i>&nbsp; Please pick a date range</small>               
+                    </div>
+                </div>                
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="select" class=" form-control-label">Pick target(s)</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="selectTarget" id="selectTarget" class="form-control" required="">
+                            <option value="0">All</option>
+                            {% for u in uniqueUrls %} 
+                            <option value="{{ u }}">{{ u }}</option>
+                            {% endfor %} 
+                        </select>
+                    </div>
+                </div>          
+                <div class="card-footer" style="text-align: right;">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Submit
+                    </button>
+                </div>
+            </form>
+        </div>        
+    </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<script type="text/javascript">
+$(function() {
+
+  $('input[name="datefilter"]').daterangepicker({
+      autoUpdateInput: false,
+      locale: {
+          cancelLabel: 'Clear'
+      }
+  });
+
+  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' _ ' + picker.endDate.format('MM/DD/YYYY'));
+  });
+
+  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+  });
+
+});
+</script>
+</body>
+</html>
