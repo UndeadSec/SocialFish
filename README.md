@@ -5,6 +5,8 @@
 
 Are you looking for SF's mobile controller? [UndeadSec/SocialFishMobile][sf-mobile]
 
+#### SETUP AND RUNNING
+
 Visit the [wiki](<https://github.com/UndeadSec/SocialFish/wiki>) for more details.
 
 Setup instructions [here](<https://github.com/UndeadSec/SocialFish/wiki/Setting-Up-SocialFish>).
