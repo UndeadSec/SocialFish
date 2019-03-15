@@ -21,7 +21,7 @@ Setup instructions [here](<https://github.com/UndeadSec/SocialFish/wiki/Setting-
 - **Tiago R. Lampert**, GitHub: [@tiagorlampert][git-tiago]
 
 #### DOCS
-- **Fernando Bellincanta**, GitHub: [@ErvalhouS][git-fernando]
+- **Fernando Bellincanta**, Twitter: [@ErvalhouS][tw-fernando], GitHub: [@ErvalhouS][git-fernando]
 
 ### DISCLAIMER
 
@@ -38,6 +38,17 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 Taken from [LICENSE](LICENSE).
 
+# CONTRIBUTING
+[![Open Source Helpers](https://www.codetriage.com/undeadsec/socialfish/badges/users.svg)](https://www.codetriage.com/undeadsec/socialfish)
+
+We encourage you to contribute to SocialFish! Please check out the [Contributing to SocialFish](https://github.com/UndeadSec/SocialFish/blob/master/CONTRIBUTING.md) guide for guidelines about how to proceed. Join us!
+
+# CONTRIBUTOR CODE OF CONDUCT
+
+This project adheres to No Code of Conduct. We are all adults. We accept anyone's contributions. Nothing else matters.
+
+For more information please visit the [No Code of Conduct homepage](https://github.com/domgetter/NCoC).
+
 [//]: # (links references)
 
 [tw-alisson]: <https://twitter.com/A1S0N_>
@@ -47,3 +58,4 @@ Taken from [LICENSE](LICENSE).
 [sf-mobile]: <https://github.com/UndeadSec/SocialFishMobile>
 [git-tiago]: <https://github.com/tiagorlampert>
 [git-fernando]: <https://github.com/ErvalhouS>
+[tw-fernando]: <https://twitter.com/ErvalhouS>
