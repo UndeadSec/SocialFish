@@ -20,6 +20,9 @@ Setup instructions [here](<https://github.com/UndeadSec/SocialFish/wiki/Setting-
 #### MOBILE MAINTAINERS
 - **Tiago R. Lampert**, GitHub: [@tiagorlampert][git-tiago]
 
+#### DOCS
+- **Fernando Bellincanta**, GitHub: [@ErvalhouS][git-fernando]
+
 ### DISCLAIMER
 
 TO BE USED FOR EDUCATIONAL PURPOSES ONLY
@@ -43,3 +46,4 @@ Taken from [LICENSE](LICENSE).
 [git-drink]: <https://github.com/dr1nk0rdi3>
 [sf-mobile]: <https://github.com/UndeadSec/SocialFishMobile>
 [git-tiago]: <https://github.com/tiagorlampert>
+[git-fernando]: <https://github.com/ErvalhouS>
