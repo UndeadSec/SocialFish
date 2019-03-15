@@ -7,6 +7,8 @@ assignees: ''
 
 ---
 
+Before you submit this bug report check that you have ran the required setup correctly. Follow [the steps on the wiki](https://github.com/UndeadSec/SocialFish/wiki/Setting-Up-SocialFish).
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
