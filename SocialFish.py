@@ -141,7 +141,7 @@ def getLogin():
         g.db.commit()
         template_path = 'fake/{}/{}/index.html'.format(agent, o)
         return render_template(template_path)
-    # caso seja a url padrão 
+    # caso seja a url padrao 
     elif url == 'https://github.com/UndeadSec/SocialFish':
         return render_template('default.html')
     # caso seja configurada para custom
