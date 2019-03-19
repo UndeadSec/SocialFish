@@ -5,6 +5,7 @@
 
 Are you looking for SF's mobile controller? [UndeadSec/SocialFishMobile][sf-mobile]
 
+Are you looking for SF's old version(**Ngrok integrated**) ? [UndeadSec/SociaFish/.../sharkNet][sf-sharknet] 
 #### SETUP AND RUNNING
 
 Visit the [wiki](<https://github.com/UndeadSec/SocialFish/wiki>) for more details.
@@ -59,3 +60,4 @@ For more information please visit the [No Code of Conduct homepage](https://gith
 [git-tiago]: <https://github.com/tiagorlampert>
 [git-fernando]: <https://github.com/ErvalhouS>
 [tw-fernando]: <https://twitter.com/ErvalhouS>
+[sf-sharknet]: <https://github.com/UndeadSec/SocialFish/releases/tag/sharkNet>
