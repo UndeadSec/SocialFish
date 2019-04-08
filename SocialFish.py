@@ -20,7 +20,7 @@ import os
 
 # Verificar argumentos
 if len(argv) < 2:
-    print("./SocialFish user password")
+    print("./SocialFish <youruser> <yourpassword>\n\ni.e.: ./SocialFish.py root pass")
     exit(0)
 
 # Temporario
