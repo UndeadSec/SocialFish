@@ -29,6 +29,7 @@ users = {argv[1]: {'password': argv[2]}}
 # Definicoes do flask
 app = Flask(__name__, static_url_path='', 
             static_folder='templates/static')
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 # Inicia uma conexao com o banco antes de cada requisicao
 @app.before_request
@@ -274,7 +275,7 @@ def revokeToken():
         upsql = "UPDATE socialfish SET token = '{}' where id = 1".format(genToken())
         cur.execute(upsql)
         g.db.commit()
-        genQRCode()
+        genQRCode(revoked=True)
     return redirect('/creds')
 
 # pagina para gerar relatorios
