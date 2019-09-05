@@ -1,6 +1,11 @@
 import os
 import sqlite3
-from core.genToken import genToken, genQRCode
+
+import click
+from flask import current_app
+from flask.cli import with_appcontext
+
+from .genToken import genToken, genQRCode
 
 def initDB(DATABASE):
     if not os.path.exists(DATABASE):
@@ -72,3 +77,11 @@ def initDB(DATABASE):
         conn.commit()
         conn.close()
         genQRCode()
+
+@click.command('init-db')
+@with_appcontext
+def init_db_command():
+    DATABASE = current_app.config['DATABASE']
+    click.echo("Initializing database... %s" %DATABASE)
+    initDB(DATABASE)
+    click.echo("Database initialized!")

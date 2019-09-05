@@ -1,17 +1,15 @@
-#!/usr/bin/env python3
-#
 from flask import Flask, request, render_template, jsonify, redirect, g, flash
-from core.config import *
-from core.view import head
-from core.scansf import nScan
-from core.clonesf import clone
-from core.dbsf import initDB
-from core.genToken import genToken, genQRCode
-from core.sendMail import sendMail
-from core.tracegeoIp import tracegeoIp
-from core.cleanFake import cleanFake
-from core.genReport import genReport
-from core.report import generate_unique #>> new line
+from .core.config import *
+from .core.view import head
+from .core.scansf import nScan
+from .core.clonesf import clone
+from .core.dbsf import initDB
+from .core.genToken import genToken, genQRCode
+from .core.sendMail import sendMail
+from .core.tracegeoIp import tracegeoIp
+from .core.cleanFake import cleanFake
+from .core.genReport import genReport
+from .core.report import generate_unique #>> new line
 from datetime import date
 from sys import argv, exit, version_info
 import colorama
@@ -522,20 +520,3 @@ def getReportMob(key):
         return jsonify(info)
     else:
         return jsonify({'status':'bad'})        
-    
-#--------------------------------------------------------------------------------------------------------------------------------
-def main():
-        if version_info<(3,0,0):
-            print('[!] Please use Python 3. $ python3 SocialFish.py')
-            exit(0)        
-        head()
-        cleanFake()
-        # Inicia o banco        
-        initDB(DATABASE)
-        app.run(host="0.0.0.0", port=5000)
-
-if __name__ == "__main__":
-    try:        
-        main()
-    except KeyboardInterrupt:
-        exit(0)

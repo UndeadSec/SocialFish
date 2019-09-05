@@ -4,7 +4,7 @@ COMPRESS_LEVEL = 6
 COMPRESS_MIN_SIZE = 500
 # ---------------------------------------------------------------------------------------------------------------
 # LOCAL CONFIGS--------------------------------------------------------------------------------------------------
-DATABASE = "./database.db"
+DATABASE = "database.db"
 url = 'https://github.com/UndeadSec/SocialFish'
 red = 'https://github.com/UndeadSec/SocialFish'
 sta = 'x'
