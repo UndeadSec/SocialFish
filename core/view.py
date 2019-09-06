@@ -1,4 +1,5 @@
 import colorama
+from os import environ
 
 def head():
     print(colorama.Style.BRIGHT)
@@ -20,4 +21,5 @@ def head():
                      '       '      '       Site: https://www.undeadsec.com
                        ' .  '
                            ''')
+
     print(colorama.Fore.GREEN + 'Go to http://0.0.0.0:5000/neptune to start')
