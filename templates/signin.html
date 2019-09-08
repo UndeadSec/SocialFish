@@ -5,8 +5,8 @@
     
 	<title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
+    {{ bootstrap.load_css() }}
+    
 <style>
 body {
     background: #222D32;
@@ -172,5 +172,6 @@ label {
                 <div class="col-lg-3 col-md-2"></div>
             </div>
         </div>
+        {{ bootstrap.load_js() }}
 </body>
 </html>

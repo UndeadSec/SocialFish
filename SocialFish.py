@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template, jsonify, redirect, g, flash, Blueprint, current_app
-from flask.cli import with_appcontext
 from .core.view import head
 from .core.scansf import nScan
 from .core.clonesf import clone
@@ -11,7 +10,6 @@ from .core.cleanFake import cleanFake
 from .core.genReport import genReport
 from .core.report import generate_unique #>> new line
 from datetime import date
-from sys import argv, exit, version_info
 
 from .auth import login_manager, User, users
 import colorama

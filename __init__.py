@@ -1,6 +1,7 @@
 import os
 
-from flask import Flask, current_app, g
+from flask import Flask
+from flask_bootstrap import Bootstrap
 import click
 
 from .core.view import head
@@ -22,7 +23,10 @@ def create_app():
         }
     )
 
+    #inicializa o gerenciador de login
     login_manager.init_app(app)
+    #incializa o bootstrap
+    Bootstrap(app)
 
     # cria diretorio instance ex: mkdir ../instance
     # exist_ok - não levanta uma exceção caso o diretório já exista

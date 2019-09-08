@@ -3,11 +3,15 @@ import qrcode.image.svg
 import qrcode
 import os
 
+from flask import current_app
+
 def genToken():
     return ''.join(secrets.token_urlsafe(16))
 
 def genQRCode(revoked=False):
-	qr = 'templates/static/token/qrcode.svg'
+	root_path = current_app.root_path
+	qr = os.path.join(root_path, "static/token/qrcode.svg")
+	print(qr)
 	if revoked:
 		os.remove(qr)
 	if not os.path.exists(qr):
