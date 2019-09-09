@@ -53,7 +53,11 @@ function toggleBeef() {
 }
 
 </script>
-
+<script>
+function showSuccess() {
+  alert("Success!")
+}
+</script>
     <div class="page-wrapper">
 
         <!-- PAGE CONTENT-->
@@ -70,7 +74,7 @@ function toggleBeef() {
                                         <li class="list-inline-item"><a href="http://0.0.0.0:5000" target="_blank" rel="nofollow"><b> http://0.0.0.0:5000</b></a></li>
                                     </ul>
                                 </div>                                
-                                <form class="au-form-icon--sm" action="/configure" method="POST">
+                                <form class="au-form-icon--sm" action="/configure" method="POST" onsubmit="showSuccess()">
                                     <input class="au-input--w300 au-input--style2" name="url" id="clone" type="text" placeholder="Clone" autocomplete="off" required="">
                                     <input class="au-input--w300 au-input--style2" name="red" type="text" placeholder="Redirection" autocomplete="off" required="">
                                     <input type="hidden" name="beef" id="beef" value="no">                                    
