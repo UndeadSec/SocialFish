@@ -1,32 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="SocialFish">
-    <meta name="author" content="UndeadSec">
-    <meta name="keywords" content="SocialFish">
-
-    <!-- Title Page-->
-    <title>SocialFish Neptune</title>
-
-    <!-- Fontfaces CSS-->
-    <link href="{{ url_for('static', filename='css/font-face.css') }}" rel="stylesheet" media="all">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link href="/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    {{ bootstrap.load_css() }}
-
-    <!-- Main CSS-->
-    <link href="{{ url_for('static', filename='css/theme.css') }}" rel="stylesheet" media="all">
-
-</head>
+{% block title %}Neptune{% endblock %}
+{% block content %}
 
 <body class="animsition">
-
     <!-- BEGIN SHOW/HIDE JS -->
 <script>
 
@@ -259,6 +236,4 @@ function toggleBeef() {
 
     {{ bootstrap.load_js() }}
 </body>
-
-</html>
-<!-- end document-->
+{% endblock %}<!-- end content block -->

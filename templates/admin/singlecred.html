@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Neptune{% endblock %}
+
+{% block content %}
     {% for item in credInfo %}
-        <span style="display:block; word-wrap:break-word;">{{item[0]}}</span>
+    <span style="display:block; word-wrap:break-word;">{{item[0]}}</span>
     {% endfor %}
-</body>
-</html>
+{% endblock %}<!-- end content block -->
