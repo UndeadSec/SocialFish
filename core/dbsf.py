@@ -24,13 +24,13 @@ def initDB(DATABASE):
         cur.execute(create_table_sql)
         conn.commit()
         create_table_sql2 = """ CREATE TABLE IF NOT EXISTS socialfish (
-                                            id integer PRIMARY KEY,                                        
+                                            id integer PRIMARY KEY,
                                             clicks integer,
                                             attacks integer,
-                                            token text                                       
+                                            token text
                                         ); """
-        cur.execute(create_table_sql2)  
-        conn.commit()                       
+        cur.execute(create_table_sql2)
+        conn.commit()
         sql = ''' INSERT INTO socialfish(id,clicks,attacks,token)
                   VALUES(?,?,?,?) '''
         i = 1
@@ -41,10 +41,10 @@ def initDB(DATABASE):
         cur.execute(sql,data)
         conn.commit()
         create_table_sql3 = """ CREATE TABLE IF NOT EXISTS sfmail (
-                                            id integer PRIMARY KEY,                                        
-                                            email VARCHAR,                                        
+                                            id integer PRIMARY KEY,
+                                            email VARCHAR,
                                             smtp text,
-                                            port text                                       
+                                            port text
                                         ); """
         cur.execute(create_table_sql3)
         conn.commit()
@@ -58,20 +58,20 @@ def initDB(DATABASE):
         cur.execute(sql,data)
         conn.commit()
         create_table_sql4 = """ CREATE TABLE IF NOT EXISTS professionals (
-                                            id integer PRIMARY KEY,                                        
-                                            email VARCHAR,                                        
+                                            id integer PRIMARY KEY,
+                                            email VARCHAR,
                                             name text,
                                             obs text
                                         ); """
         cur.execute(create_table_sql4)
         conn.commit()
         create_table_sql5 = """ CREATE TABLE IF NOT EXISTS companies (
-                                            id integer PRIMARY KEY,                                        
-                                            email VARCHAR,                                        
+                                            id integer PRIMARY KEY,
+                                            email VARCHAR,
                                             name text,
                                             phone text,
                                             address text,
-                                            site text                                    
+                                            site text
                                         ); """
         cur.execute(create_table_sql5)
         conn.commit()

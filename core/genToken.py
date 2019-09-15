@@ -15,7 +15,7 @@ def genQRCode(revoked=False):
 		os.remove(qr)
 	if not os.path.exists(qr):
 		factory = qrcode.image.svg.SvgImage
-		img = qrcode.make(genToken(), image_factory=factory)
+		img = qrcode.make(token, image_factory=factory)
 		img.save(qr)
 	else:
 		os.remove(qr)
