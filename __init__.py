@@ -7,12 +7,12 @@ import click
 from .core.view import head
 from .core.cleanFake import cleanFake
 from .core.dbsf import init_db_command
+from .core.cleanFake import clean_fake_command
+
 from .core.config import DATABASE
 from .auth import login_manager, users
 
 head()
-cleanFake()
-
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
 
@@ -33,7 +33,8 @@ def create_app():
     os.makedirs(app.instance_path, exist_ok=True)
     # adicionar comando init_db_command ex: flask init-db
     app.cli.add_command(init_db_command)
-    
+    app.cli.add_command(clean_fake_command)
+
     username = input('Type a username: ')
     password = input('Type a password: ')
     users = {username: {'password': password}}

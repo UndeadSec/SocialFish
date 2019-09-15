@@ -2,13 +2,16 @@ import requests
 import re
 import os
 
+from flask import current_app
+
 # CLONING FUNCTIONS --------------------------------------------------------------------------------------------
 def clone(url, user_agent, beef):
     try:        
         u = url.replace('://', '-')
-        q = 'templates/fake/{}/{}'.format(user_agent, u)
+        templates_path = os.path.join(current_app.root_path, current_app.template_folder)
+        q = "{}/fake/{}/{}".format(templates_path, user_agent, u)
         os.makedirs(q, exist_ok=True)
-        temp_ind_path = 'templates/fake/{}/{}/index.html'.format(user_agent, u)
+        temp_ind_path = "{}/fake/{}/{}/index.html".format(templates_path, user_agent, u)
         headers = {'User-Agent': user_agent}
         r = requests.get(url, headers=headers)
         html = r.text        

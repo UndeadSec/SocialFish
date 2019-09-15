@@ -6,8 +6,13 @@ from flask import current_app
 from flask.cli import with_appcontext
 
 from .genToken import genToken, genQRCode
+from .cleanFake import cleanFake
 
-def initDB(DATABASE):
+def initDB(DATABASE, username, password):
+    """
+    param username: administrator username
+    param password: administrator password
+    """
     if not os.path.exists(DATABASE):
         conn = sqlite3.connect(DATABASE)
         cur = conn.cursor()
@@ -78,10 +83,16 @@ def initDB(DATABASE):
         conn.close()
         genQRCode(t)
 
-@click.command('init-db')
+
+@click.command('init-db', help="flask init-db -u username -p password")
+@click.option('-u', '--username', default='admin')
+@click.option('-p', '--password', default='admin')
 @with_appcontext
-def init_db_command():
+def init_db_command(username, password):
     DATABASE = current_app.config['DATABASE']
     click.echo("Initializing database... %s" %DATABASE)
-    initDB(DATABASE)
-    click.echo("Database initialized!")
+    if not username or not password:
+        click.echo("Define a username and password from administrator!. Initializing database failed!")
+    else:
+        initDB(DATABASE, username, password)
+        click.echo("Database initialized!")
