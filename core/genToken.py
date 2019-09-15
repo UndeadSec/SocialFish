@@ -8,7 +8,7 @@ from flask import current_app
 def genToken():
     return ''.join(secrets.token_urlsafe(16))
 
-def genQRCode(revoked=False):
+def genQRCode(token, revoked=False):
 	root_path = current_app.root_path
 	qr = os.path.join(root_path, "static/token/qrcode.svg")
 	if revoked:

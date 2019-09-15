@@ -76,7 +76,7 @@ def initDB(DATABASE):
         cur.execute(create_table_sql5)
         conn.commit()
         conn.close()
-        genQRCode()
+        genQRCode(t)
 
 @click.command('init-db')
 @with_appcontext
