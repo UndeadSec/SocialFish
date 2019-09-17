@@ -154,7 +154,11 @@
 
                         <div class="col-lg-12 loginbttm">
                             <div class="col-lg-6 login-btm login-text">
-                                <!-- Error Message -->
+                                {%  for message in get_flashed_messages() %}
+                                    <span class="alert alert-danger" style="font-size: 0.7rem"role="alert">
+                                        {{ message }}
+                                    </span>
+                                {% endfor %}
                             </div>
                             <div class="col-lg-6 login-btm login-button">
                                 <button type="submit" class="btn btn-outline-primary">LOGIN</button>

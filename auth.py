@@ -1,29 +1,25 @@
 from flask_login import LoginManager, UserMixin
+from .models import User
+from . import login_manager
 
-login_manager = LoginManager()
-
-class User(UserMixin):
-    ...
 @login_manager.user_loader
 def user_loader(email):
-    if email not in users:
-        return
-
-    user = User()
-    user.id = email
-    return user
-
+    return User.query.filter_by(username=email).first()
 
 @login_manager.request_loader
 def request_loader(request):
     email = request.form.get('email')
-    if email not in users:
+    if not User.query.filter_by(username=email).first():
         return
 
-    user = User()
-    user.id = email
-    user.is_authenticated = request.form['password'] == users[email]['password']
+    user = User.query.filter_by(username=email).first()
+    _password = request.form['password']
+    user.is_authenticated = user.verify_password(password=_password)
 
     return user
-    
-users = {'admin': {'password': 'admin'}}
+
+
+@login_manager.unauthorized_handler
+def unauthorized_handler():
+    return 'Unauthorized'
+
