@@ -9,14 +9,14 @@ from werkzeug.security import generate_password_hash
 from .genToken import genToken, genQRCode
 from .cleanFake import cleanFake
 
-def initDB( username, password, drop_all):
+def initDB(username, password, drop_all):
     """
     param username: administrator username
     param password: administrator password
     """
     from .. import db
     from ..models import User, SocialFish
-    
+
     if drop_all:
         "Drop all tables"
         db.drop_all()

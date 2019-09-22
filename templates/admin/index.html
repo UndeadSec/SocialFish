@@ -176,37 +176,37 @@ function showSuccess() {
                                         {% for item in data %}
 
                                         <tr class="tr-shadow">
-                                            <td><span class="block-email">{{item[1].replace('http://','').replace('https://', '')[:30]}}</span></td>
-                                            <td>{{item[6]}}
-                                                <a href="trace/{{item[6]}}" target="_blank" rel="nofollow">
+                                            <td><span class="block-email">{{ item.url.replace('http://','').replace('https://', '')[:30] }}</span></td>
+                                            <td>{{ item.rip }}
+                                                <a href="trace/{ {item.rip }}" target="_blank" rel="nofollow">
                                                 <button type="button"><small><i class="fas fa-eye"></i> TRACE</small></button>
                                                 </a>
                                             </td>
                                             <td>
-                                            {% if item[3] in 'chrome safari firefox opera' %}
-                                                <i class="fab fa-{{item[3]}}"></i> {{item[3]}} v{{item[4]}}
+                                            {% if item.browser in 'chrome safari firefox opera' %}
+                                                <i class="fab fa-{{ item.browser }}"></i> {{ item.browser }} v{{ item.bversion }}
                                             {% else %}
-                                                {{item[4]}} v{{item[5]}}
+                                                {{ item.bversion }} v{{ item.platform }}
                                             {% endif %}
                                             </td>
                                             <td>
-                                                {% if 'iphone' in item[5] or 'ipad' in item[5] %}
-                                                    <i class="fab fa-apple"></i> {{item[5]}}
+                                                {% if 'iphone' in item.platform or 'ipad' in item.platform %}
+                                                    <i class="fab fa-apple"></i> {{ item.platform }}
                                                 {% else %}
-                                                    <i class="fab fa-{{item[5]}}"></i> {{item[5]}}
+                                                    <i class="fab fa-{{ item.platform }}"></i> {{ item.platform }}
                                                 {% endif %}
                                             </td>
-                                            <td><i class="far fa-calendar-alt"></i> {{item[2]}}</td>
+                                            <td><i class="far fa-calendar-alt"></i> {{ item.pdate }}</td>
                                             <td>
-                                                <a href="scansf/{{item[6]}}" target="_blank" rel="nofollow">
+                                                <a href="scansf/{{ item.rip }}" target="_blank" rel="nofollow">
                                                     <button type="button"><i class="fas fa-bullseye"></i> Scan  </button>
                                                 </a>
-                                                <a href="https://www.shodan.io/host/{{item[6]}}" target="_blank" rel="nofollow">
+                                                <a href="https://www.shodan.io/host/{{ item.rip }}" target="_blank" rel="nofollow">
                                                     <button type="button"><i class="fas fa-spider"></i> Shodan</button>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="single/{{item[0]}}" target="_blank" rel="nofollow">
+                                                <a href="single/{{ item.id }}" target="_blank" rel="nofollow">
                                                     <button type="button"><i class="fas fa-search"></i> View</button>
                                                 </a>
                                             </td>

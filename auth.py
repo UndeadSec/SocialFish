@@ -1,10 +1,9 @@
-from flask_login import LoginManager, UserMixin
 from .models import User
 from . import login_manager
 
 @login_manager.user_loader
-def user_loader(email):
-    return User.query.filter_by(username=email).first()
+def user_loader(user_id):
+    return User.query.get(int(user_id))
 
 @login_manager.request_loader
 def request_loader(request):

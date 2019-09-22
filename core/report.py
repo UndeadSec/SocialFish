@@ -3,29 +3,33 @@ from pylatex import Document, PageStyle, Head, Foot, MiniPage, \
     StandAloneGraphic, MultiColumn, Tabu, LongTabu, LargeText, MediumText, \
     LineBreak, NewPage, Tabularx, TextColor, simple_page_number, Command
 from pylatex.utils import bold, NoEscape
-from sqlite3 import connect
 from ast import literal_eval
 from time import strftime
 from webbrowser import open_new
 
-def generate_report(DATABASE, cpm):
+from .. import db
+from .. models import Creds
 
-    conex = connect(DATABASE)
-    cursor = conex.cursor()
+def generate_report(cpm):
     list_urls = []
-       
-    for urls in cursor.execute('SELECT DISTINCT url FROM creds'): list_urls += urls
+    urls = db.session.query(Creds.url).distinct().all()
+    list_urls.extend(urls)
+
     _cURL = cpm
     choose_url = 'http' if _cURL == 'All' else _cURL
     result_query = []
-    for row in cursor.execute('SELECT * FROM creds WHERE url GLOB "*{}*"'.format(choose_url)):
-        result_query += row
-        
-    result_count = cursor.execute('SELECT COUNT(*) FROM creds WHERE url GLOB "*{}*"'.format(choose_url)).fetchone()
+    
+    #TODO: converter select para sqlalchemy orm
+    sql = db.text("SELECT * FROM creds WHERE url GLOB '*{}*'".format(choose_url))
+    for row in db.engine.execute(sql):
+        result_query.extend(row)
+
+    sql = db.text("SELECT COUNT(*) FROM creds WHERE url GLOB '*{}*'".format(choose_url))
+    result_count = db.egine.execute(sql)
     
     return result_query, result_count
 
-def generate_unique(DATABASE,cpm):
+def generate_unique(cpm):
     geometry_options = {
         "head": "60pt",
         "margin": "0.5in",
@@ -81,7 +85,7 @@ def generate_unique(DATABASE,cpm):
         data_table.add_empty_row()
         data_table.add_hline()
 
-        result_query, result_count = generate_report(DATABASE,cpm)
+        result_query, result_count = generate_report(cpm)
         x = 0
 
         for i in range(result_count[0]):
