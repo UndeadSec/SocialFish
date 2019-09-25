@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template, jsonify, redirect, g, flash, Blueprint, current_app, url_for
-from .core.view import head
 from .core.scansf import nScan
 from .core.clonesf import clone
 from .core.genToken import genToken, genQRCode
@@ -261,7 +260,7 @@ def getCompanies():
         phone = request.form['phone']
         address = request.form['address']
         site = request.form['site']
-        company = Companies(name, email, phone, andress, site)
+        company = Companies(name=name, email=email, phone=phone, address=address, site=site)
         db.session.add(company)
         db.session.commit()
         return redirect('/companies')

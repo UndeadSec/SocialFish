@@ -25,9 +25,9 @@ def generate_report(cpm):
         result_query.extend(row)
 
     sql = db.text("SELECT COUNT(*) FROM creds WHERE url GLOB '*{}*'".format(choose_url))
-    result_count = db.egine.execute(sql)
+    result_count = db.engine.execute(sql)
     
-    return result_query, result_count
+    return result_query, result_count.rowcount
 
 def generate_unique(cpm):
     geometry_options = {
@@ -43,8 +43,7 @@ def generate_unique(cpm):
     with first_page.create(Head("L")) as header_left:
         with header_left.create(MiniPage(width=NoEscape(r"0.49\textwidth"),
                                          pos='c', align='L')) as logo_wrapper:
-            logo_file = os.path.join(os.path.dirname(__file__),
-                                     'SOCIALFISH_transparent.png')
+            logo_file = "/home/franklin/Documentos/SocialFish/static/logo/sf.png"
             logo_wrapper.append(StandAloneGraphic(image_options="width=120px",
                                 filename=logo_file))
     
@@ -88,7 +87,7 @@ def generate_unique(cpm):
         result_query, result_count = generate_report(cpm)
         x = 0
 
-        for i in range(result_count[0]):
+        for i in range(result_count):
 
             url = result_query[1+x].split('//')[1]
             ip = result_query[7+x]
