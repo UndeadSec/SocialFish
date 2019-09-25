@@ -7,6 +7,8 @@ from ast import literal_eval
 from time import strftime
 from webbrowser import open_new
 
+from flask import current_app
+
 from .. import db
 from .. models import Creds
 
@@ -43,7 +45,7 @@ def generate_unique(cpm):
     with first_page.create(Head("L")) as header_left:
         with header_left.create(MiniPage(width=NoEscape(r"0.49\textwidth"),
                                          pos='c', align='L')) as logo_wrapper:
-            logo_file = "/home/franklin/Documentos/SocialFish/static/logo/sf.png"
+            logo_file = os.path.join(current_app.root_path, "static/logo/sf.png")
             logo_wrapper.append(StandAloneGraphic(image_options="width=120px",
                                 filename=logo_file))
     
