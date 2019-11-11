@@ -5,7 +5,7 @@
 {% block content %}
 <h5>Displaying Ip Tracing Information @{{ip}}</h5>
 <span style="display:block; word-wrap:break-word;">
-    <img src="https://lipis.github.io/flag-icon-css/flags/4x3/{{ traceIp['country_code'].lower() }}.svg" style="width: 33.5px; height: 25px;"> {{traceIp['country_name']}}<br>
+    <img src="https://lipis.github.io/flag-icon-css/flags/4x3/{{ traceIp['country_code'].lower() }}.svg" style="width: 33.5px; height: 25px;"> {{ traceIp['country_name'] }}<br>
     <i class="fas fa-map-marker"></i> City: {{traceIp['city']}}<br>
     <i class="fas fa-envelope"></i> Postal: {{traceIp['postal']}}<br>
     <i class="fas fa-flag"></i> State: {{traceIp['state']}}<br>

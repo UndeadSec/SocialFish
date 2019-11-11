@@ -11,7 +11,7 @@ def genToken():
 def genQRCode(token, revoked=False):
 	root_path = current_app.root_path
 	qr = os.path.join(root_path, "static/token/qrcode.svg")
-	if revoked:
+	if revoked and os.path.exists(qr):
 		os.remove(qr)
 	if not os.path.exists(qr):
 		factory = qrcode.image.svg.SvgImage

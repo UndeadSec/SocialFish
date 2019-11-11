@@ -178,7 +178,7 @@ function showSuccess() {
                                         <tr class="tr-shadow">
                                             <td><span class="block-email">{{ item.url.replace('http://','').replace('https://', '')[:30] }}</span></td>
                                             <td>{{ item.rip }}
-                                                <a href="trace/{ {item.rip }}" target="_blank" rel="nofollow">
+                                                <a href="trace/{{ item.rip }}" target="_blank" rel="nofollow">
                                                 <button type="button"><small><i class="fas fa-eye"></i> TRACE</small></button>
                                                 </a>
                                             </td>
