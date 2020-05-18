@@ -1,4 +1,4 @@
-FROM .gitpod.Dockerfile
+FROM .gitpod.dockerfile
                     
 USER gitpod
 
