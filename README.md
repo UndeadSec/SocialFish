@@ -39,7 +39,7 @@ Taken from [LICENSE](LICENSE).
 # CONTRIBUTING
 [![Open Source Helpers](https://www.codetriage.com/undeadsec/socialfish/badges/users.svg)](https://www.codetriage.com/undeadsec/socialfish)
 
-We encourage you to contribute to SocialFish! Please check out the [Contributing to SocialFish](https://github.com/UndeadSec/SocialFish/blob/master/CONTIBUTING.md) guide for guidelines about how to proceed. Join us!
+We encourage you to contribute to SocialFish! Please check out the [Contributing to SocialFish](https://github.com/UndeadSec/SocialFish/blob/master/CONTRIBUTING.md) guide for guidelines about how to proceed. Join us!
 
 # CONTRIBUTOR CODE OF CONDUCT
 
