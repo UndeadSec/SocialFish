@@ -17,7 +17,7 @@ Setup instructions [here](https://github.com/UndeadSec/SocialFish/wiki/Setting-U
 
 #### MAINTAINERS
 
-- **Alisson Moretto**, Twitter: [@A1S0N\_][tw-alisson], GitHub: [@A1S0N][git-alisson]
+- **Alisson Moretto**, Twitter: [@UndeadSec][tw-alisson], GitHub: [@UndeadSec][git-alisson]
 - **Vandré Augusto**, Twitter: [@dr1nKoRdi3][tw-drink], GitHub: [@dr1nK0Rdi3][git-drink]
 
 #### DOCS
