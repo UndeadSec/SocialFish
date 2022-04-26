@@ -16,7 +16,7 @@ def head():
       .    '   '....'               ..'.      ' .
          '  .                     .     '          '     '  v3.0Nepture
                '  .  .  .  .  . '.    .'              '  .
-                   '         '    '. '      Twitter: https://twitter.com/A1S0N_
+                   '         '    '. '      Twitter: https://twitter.com/UndeadSec
                      '       '      '       Site: https://www.undeadsec.com
                        ' .  '
                            ''')
