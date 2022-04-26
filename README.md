@@ -52,8 +52,8 @@ This project adheres to No Code of Conduct. We are all adults. We accept anyone'
 For more information please visit the [No Code of Conduct homepage](https://github.com/domgetter/NCoC).
 
 [//]: # 'links references'
-[tw-alisson]: https://twitter.com/A1S0N_
-[git-alisson]: https://github.com/A1S0N
+[tw-alisson]: https://twitter.com/UndeadSec
+[git-alisson]: https://github.com/UndeadSec
 [tw-drink]: https://twitter.com/Dr1nkOrdi3
 [git-drink]: https://github.com/dr1nk0rdi3
 [sf-mobile]: https://github.com/UndeadSec/SocialFishMobile
