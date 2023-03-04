@@ -1,0 +1,19 @@
+version: '3.9'
+
+x-logging: &default-logging
+  options:
+    max-size: "40m"
+    max-file: "10"
+  driver: json-file
+
+services:
+  social-fish:
+    container_name: social-fish
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    # Username is: user
+    # Password is: password
+    command: "pipenv run python SocialFish.py user password"
