@@ -5,5 +5,5 @@ qrcode
 Flask
 colorama
 Flask_Login
-nmap
+python3-nmap
 python-secrets
