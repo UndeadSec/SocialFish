@@ -39,6 +39,15 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 Taken from [LICENSE](LICENSE).
 
+# Build
+## Docker
+> How to run with Docker?
+
+You need to run:
+```sh
+docker compose up
+```
+
 # CONTRIBUTING
 
 [![Open Source Helpers](https://www.codetriage.com/undeadsec/socialfish/badges/users.svg)](https://www.codetriage.com/undeadsec/socialfish)
