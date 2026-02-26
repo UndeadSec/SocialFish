@@ -8,5 +8,5 @@ DATABASE = "./database.db"
 url = 'https://github.com/UndeadSec/SocialFish'
 red = 'https://github.com/UndeadSec/SocialFish'
 sta = 'x'
-APP_SECRET_KEY = '<CHANGE ME SF>'
+APP_SECRET_KEY = '<116161651651>'
 # ---------------------------------------------------------------------------------------------------------------
