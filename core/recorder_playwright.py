@@ -17,8 +17,19 @@ from typing import Dict, List, Optional
 try:
     from playwright.async_api import async_playwright, Browser, BrowserContext, Page
 except ImportError:
-    print("[-] Playwright not installed. Run: pip install playwright && playwright install")
-    exit(1)
+    # Playwright may be installed via pipx in an isolated venv
+    import sys
+    import glob
+    _pipx_venv = os.path.expanduser("~/.local/share/pipx/venvs/playwright")
+    _candidates = glob.glob(os.path.join(_pipx_venv, "lib", "python*", "site-packages"))
+    for _path in _candidates:
+        if _path not in sys.path:
+            sys.path.insert(0, _path)
+    try:
+        from playwright.async_api import async_playwright, Browser, BrowserContext, Page
+    except ImportError:
+        print("[-] Playwright not installed. Run: pip install playwright && playwright install")
+        exit(1)
 
 class PlaywrightRecorder:
     """Record and replay dynamic login flows with Playwright"""
